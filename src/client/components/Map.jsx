@@ -21,7 +21,7 @@ console.log(event.get('coords'))
 
 <YMaps>
     <div>
-<Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
+<Map style={{width:'60%', height:'400px'}} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
   <Placemark geometry={[55.684758, 37.738521]} />
 </Map>
 </div>
