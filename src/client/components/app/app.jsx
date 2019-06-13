@@ -1,13 +1,20 @@
 import React from "react";
 
 import Menu from '../Menu';
+
 import MapList from '../MapList/MapList';
 import MapCreator from '../MapCreator/MapCreator';
+
+import { TestMap } from "../Map";
+
+
+
 
 class App extends React.Component {
 
   render() {
     return (
+
       <div className='ui container'>
         <Menu />
         <div className="ui grid">
@@ -19,7 +26,9 @@ class App extends React.Component {
             </div>
             </div>
           </div>
+          <TestMap/>
         </div>
+     
       </div>
     );
   }
