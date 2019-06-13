@@ -5,6 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { match } from "minimatch";
 import { Redirect } from 'react-router-dom';
 import Menu from '../Menu';
+import { TestMap } from "../Map";
+
+
 
 class App extends React.Component {
 
@@ -29,6 +32,8 @@ class App extends React.Component {
           {/* <Route exact path='/game' component={Quiz} /> */}
         </Router>
       <h1 align="center"> Travel</h1>
+      <TestMap/>
+      
       </div>
     );
   }
