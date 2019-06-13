@@ -52,10 +52,25 @@ export class TestMap extends React.Component {
             <YMaps>
                 <div>
                     <Map style={{ height: "300px", width: "600px" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
-                        <Placemark geometry={[55.684758, 37.738521]} />
-                        <Placemark geometry={[55.794758, 37.738521]} />
+                        <Placemark geometry={[55.684758, 37.738521]}
+                            options={{
+                                iconLayout: 'default#image',
+                                iconImageHref:"https://img.icons8.com/cotton/64/000000/forest.png",
+                                iconContent: 'Посмотри'
+                                }}
+                                properties={{
+                                    balloonContent:"Здесь можно выпить",
+                                }}
+                                modules={
+                                    ['geoObject.addon.balloon', 'geoObject.addon.hint', 'geoObject.addon.editor']
+                                }
+                                
+                                />
                         {/* {this.testClick()} */}
-                        {this.state.placemarks.map(el => <Placemark geometry={el}/>)}
+                        {this.state.placemarks.map(el => <Placemark geometry={el} options={{
+                                iconLayout: 'default#image',
+                                iconImageHref:"https://img.icons8.com/cotton/64/000000/forest.png"
+                                }}/>)}
                     </Map>
                 </div>
             </YMaps>
