@@ -14,7 +14,7 @@ const RedisStore = require('connect-redis')(session);
 const client  = redis.createClient();
 
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/reactYelp', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/TravelProject', {useNewUrlParser: true});
 
 
 
