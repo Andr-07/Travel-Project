@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { YMaps, Map, Polyline, Button } from 'react-yandex-maps';
 
 class App extends React.Component {

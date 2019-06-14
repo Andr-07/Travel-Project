@@ -77,4 +77,4 @@ export class TestMap extends React.Component {
             </YMaps>
         );
     }
-
+}
