@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const Index = () => (
 <BrowserRouter>
-  <App appName='React Router Challenge: Yelp Restaurants Clone'/>
+  <App />
   </BrowserRouter>
 );
 
