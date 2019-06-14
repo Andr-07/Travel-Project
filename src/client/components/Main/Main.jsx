@@ -8,8 +8,7 @@ import MapList from '../Main/MapList/MapList';
 class Main extends React.Component {
   render() {
     return (
-
-      
+ 
       <div className="ui grid"> 
            <div className="ui row"> 
              <div className='eleven wide column'> 

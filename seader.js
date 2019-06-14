@@ -1,41 +1,24 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/reactYelp', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/hiking', { useNewUrlParser: true });
 
-const Rest = require('./src/server/models/rest');
+const Tour = require('./src/server/models/tour');
 
 const db = mongoose.connection;
 
 async function run() {
 
-        let rest1 = new Rest({
-            id: 3,
-            name: "Bar Pisellino",
-            description: "The best bar ever",
-            reviews:['I like it']
-    
-        });
-
-        let rest2 = new Rest({
-            id: 4,
-            name: "Square Pizza",
-            description: "The best pizza",
-            reviews:['I like it too much']
-    
-        });
-
-        let rest3 = new Rest({
-            id: 5,
-            name: "Tzaverno",
-            description: "The best restaurant ever",
-            reviews:['I like it too']
+        let tour1 = new Tour({
+            userName: 'Andrey',
+            tourName: "CityTour",
+            description: "The best hiking ever",
+            allMarks: [[55,46],[43,32]],
+            allLines: [[55,46],[43,32]]
     
         });
 
 
-        // await rest1.save()
-        // await rest2.save()
-        // await rest3.save()
-        let a = await Rest.find();
+        // await tour1.save()
+        let a = await Tour.find();
         console.log(a);
         
         db.close();

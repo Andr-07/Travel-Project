@@ -1,6 +1,5 @@
 const express = require('express');
-const Rest = require('./models/rest');
-const Reviews = require('./models/reviews');
+const Tour = require('./models/tour');
 
 const router = express.Router();
 
@@ -9,9 +8,18 @@ router.get('/test', (req, res) => {
 });
 
 
-router.post('/getQuestion', async function (req, res, next) {
-  console.log(">>>>>>>>>>>>")
-  res.json(rest)
+router.post('/oneTour', async (req, res, next) => {
+  let saveData = new Tour ({
+    userName: 'Katrin',
+    tourName: 'Montengero',
+    description: 'The best hiking ever',
+    allMarks: req.body.allMarks,
+    allLines: req.body.allLines
+  })
+
+  // await saveData.save();
+  console.log(">>>>>>>>>>>>", saveData)
+  res.json()
 });
 
 
