@@ -2,8 +2,8 @@ import React from "react";
 
 import Menu from '../Menu';
 
-import MapList from '../MapList/MapList';
 import MapCreator from '../MapCreator/MapCreator';
+import MapList from '../MapList/MapList';
 
 import { TestMap } from "../Map";
 import MapLine from '../MapLines/MapLine'
@@ -22,15 +22,14 @@ class App extends React.Component {
           <div className="ui row">
             <div className='eleven wide column'>
               <MapCreator/>
-            <div className = 'five wide column'>
-              <MapList />
             </div>
+            <div className = 'four wide column'>
+              <MapList />
             </div>
           </div>
           <TestMap/>
           <MapLine />
         </div>
-     
       </div>
     );
   }
