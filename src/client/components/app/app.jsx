@@ -1,39 +1,19 @@
 import React from "react";
-
-import Menu from '../Menu';
-
-import MapCreator from '../MapCreator/MapCreator';
-import MapList from '../MapList/MapList';
-import MapLine from '../MapLine';
-import { TestMap } from "../Map";
-
-
-
+import Menu from '../Main/Menu';
+import Welcome from '../WelcomePage/Welcome';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends React.Component {
-
   render() {
     return (
-
-      <div className='ui container'>
-        <Menu />
-        <div className="ui grid">
-          <div className="ui row">
-            <div className='eleven wide column'>
-              <MapCreator/>
-            </div>
-            <div className = 'four wide column'>
-              <MapList />
-            </div>
-          </div>
-        </div>
-        <MapLine/>
+      <div> 
+<Router>
+  <Route exact path='/'  component={Welcome} />
+  <Route  exact path='/main'  component={Menu} />
+</Router>
       </div>
     );
   }
 }
-
-
-
-
 export default App;
+

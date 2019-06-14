@@ -1,5 +1,5 @@
 import React from 'react';
-import picmap from '../../public/map.png';
+import picmap from '../../../public/map.png';
 
 class MapItem extends React.Component {
 
