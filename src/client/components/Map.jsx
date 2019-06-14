@@ -3,6 +3,7 @@ import React from 'react';
 import { YMaps, Map, RouteButton, Placemark } from 'react-yandex-maps';
 
 export class TestMap extends React.Component {
+
     constructor(props) {
         super(props);
 
@@ -76,4 +77,4 @@ export class TestMap extends React.Component {
             </YMaps>
         );
     }
-}
+
