@@ -4,7 +4,7 @@ import Menu from '../Menu';
 
 import MapCreator from '../MapCreator/MapCreator';
 import MapList from '../MapList/MapList';
-
+import MapLine from '../MapLine';
 import { TestMap } from "../Map";
 
 
@@ -27,6 +27,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+        <MapLine/>
       </div>
     );
   }

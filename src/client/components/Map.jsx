@@ -11,7 +11,7 @@ export class TestMap extends React.Component {
     return (
       <YMaps>
         <div>
-          <Map style={{ height: '600px', width: '780px' }}
+          <Map style={{  width: "100%", height: "600px"}}
            defaultState={{ center: [55.75, 37.57], zoom: 9 }} 
            onClick={this.handleClick}>
 
