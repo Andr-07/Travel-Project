@@ -1,77 +1,130 @@
 import React from 'react';
 
-import { YMaps, Map, RouteButton, Placemark } from 'react-yandex-maps';
+import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
 
 export class TestMap extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
-            c1: '',
-            c2: '',
-            placemarks: []
+            markX: '',
+            markY: '',
+            placemarks: [],
+            isMark: false,
+            isLine: false,
+            lines: [],
+            back: false
         }
+        this.handleClick = this.handleClick.bind(this)
+        this.polylineButton = this.polylineButton.bind(this)
     }
 
-    handleClick = async (event) => {
-        // console.log(this.state)     
-        // console.log(event.get('coords'))
-        let coords = await event.get('coords');
-        let coord1 = coords[0];
-        let coord2 = coords[1];
+    /* Кнопка перехода на маркер */
 
+    markButton = () => {
         this.setState({
-            c1: coord1,
-            c2: coord2,
-            placemarks: [...this.state.placemarks, [coord1, coord2]]
+            isMark: !this.state.isMark
         })
     }
 
-    testClick = () => {
-        return (
-            <Placemark
-                geometry={[this.state.c1, this.state.c2]} />
-        )
+  /* Кнопка перехода на линию */
+
+    polylineButton = () => {
+        this.setState({
+            isLine: !this.state.isLine
+        })
+        console.log('falseortru line', this.state.isLine)
+    }
+
+  /* Кнопка для рисования маркера и линии  */
+
+    handleClick = (event) => {
+        let coords1 = event.get('coords')
+        if (this.state.isLine === true) {
+            this.setState({
+                lines: [...this.state.lines, coords1]
+            })
+        }
+
+        if (this.state.isMark === true) {
+            let coordsMarks = event.get('coords');
+            let coord1 = coordsMarks[0];
+            let coord2 = coordsMarks[1];
+            this.setState({
+                markX: coord1,
+                markY: coord2,
+                placemarks: [...this.state.placemarks, [coord1, coord2]],
+                isMark: !this.state.isMark
+            })
+        }
+
+console.log("placemarks: ", this.state.placemarks)
+console.log("state: ", this.state)
 
     }
 
-    render() {
-        console.log('PLACEMARKS:    ', this.state.placemarks)
-        console.log('STATE    ', this.state)
-        return (
-            //   <YMaps>
-            //     <div>
-            //       My awesome application with maps!
-            //       <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }}>
-            //             <RouteButton options={{ float: 'right' }} />
+  /* Кнопка удаление последней линии  */
 
-            //       </Map>
-            //     </div>
-            //   </YMaps>
+    backButton = () => {
+        console.log(this.state.lines)
+        this.setState({
+            lines: this.state.lines.slice(0, this.state.lines.length - 1)
+        })
+        console.log(this.state.lines)
+    }
+
+    render() {
+        return (
 
             <YMaps>
                 <div>
-                    <Map style={{ height: "300px", width: "600px" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
+                    <Map style={{ height: "300px", width: "80%" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
+                        <Button
+                            data={{ content: 'Mark' }}
+                            options={{ maxWidth: 128 }}
+                            defaultState={{ selected: false }}
+                            onClick={this.markButton}
+                        />
+                        <Button
+                            data={{ content: 'Line' }}
+                            options={{ maxWidth: 128 }}
+                            defaultState={{ selected: false }}
+                            onClick={this.polylineButton}
+                        />
+                        <Button
+                            data={{ content: 'Back' }}
+                            options={{ maxWidth: 128 }}
+                            defaultState={{ selected: false }}
+                            onClick={this.backButton}
+                        />
+                        <Polyline
+                            geometry={[...this.state.lines]}
+                            options={{
+                                balloonCloseButton: false,
+                                strokeColor: '#DC143C',
+                                strokeWidth: 3,
+                                strokeOpacity: 0.5,
+                            }}
+                        />
                         <Placemark geometry={[55.684758, 37.738521]}
                             options={{
                                 iconLayout: 'default#image',
-                                iconImageHref:"https://img.icons8.com/cotton/64/000000/forest.png",
+                                iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png",
                                 iconContent: 'Посмотри'
-                                }}
-                                properties={{
-                                    balloonContent:"Здесь можно выпить",
-                                }}
-                                modules={
-                                    ['geoObject.addon.balloon', 'geoObject.addon.hint', 'geoObject.addon.editor']
-                                }
-                                
-                                />
-                        {/* {this.testClick()} */}
+                            }}
+                            properties={{
+                                hintContent: "Здесь можно выпить",
+                            }}
+                            modules={
+                                ['geoObject.addon.balloon', 'geoObject.addon.hint', 'geoObject.addon.editor']
+                            }
+
+                        />
                         {this.state.placemarks.map(el => <Placemark geometry={el} options={{
-                                iconLayout: 'default#image',
-                                iconImageHref:"https://img.icons8.com/cotton/64/000000/forest.png"
-                                }}/>)}
+                            iconLayout: 'default#image',
+                            iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png"
+                        }} />)}
                     </Map>
                 </div>
             </YMaps>

@@ -28,7 +28,7 @@ class App extends React.Component {
             </div>
           </div>
           <TestMap/>
-          <MapLine />
+          {/* <MapLine /> */}
         </div>
       </div>
     );
