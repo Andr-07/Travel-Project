@@ -74,6 +74,21 @@ console.log("state: ", this.state)
         console.log(this.state.lines)
     }
 
+    saveData = async () => {
+    let response = await fetch('/api/oneTour',
+    {method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        allMarks: this.state.placemarks,
+        allLines: this.state.lines
+     })
+    })
+
+  }
+
     render() {
         return (
 
@@ -126,6 +141,7 @@ console.log("state: ", this.state)
                             iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png"
                         }} />)}
                     </Map>
+                <button onClick={this.saveData}>Save it</button>
                 </div>
             </YMaps>
         );

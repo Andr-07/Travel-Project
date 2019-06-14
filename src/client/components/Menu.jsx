@@ -20,6 +20,7 @@ class Menu extends React.Component {
         <a className="item active"><Link to='/reg'>Sign In</Link></a> 
         <a className="item"> <Link to='/'>Home</Link></a>
         <a className="item"><Link to='/society'>Society</Link></a>
+        <a className="item"><Link to='/mapofuser'>Map of user</Link></a>
     </Router> 
  
  <Route exact path='/society' component={{MapItem}} />
