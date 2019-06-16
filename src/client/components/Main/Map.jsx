@@ -117,8 +117,7 @@ console.log("state: ", this.state)
                 
                 <YMaps>
                 <div>
-                    <Map style={{ height: "300px", width: "80%" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
-                    
+                    <Map style={{ height: "600px", width: "100%" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
                         <Button
                             data={{ content: 'Mark' }}
                             options={{ maxWidth: 128 }}
@@ -176,8 +175,6 @@ console.log("state: ", this.state)
                     {this.state.placemarks.map(el => <li>{el.coors}</li>)}
                 <button onClick={this.saveData}>Save it</button>
                         {!this.state.isMark ? <input></input> : <h1></h1>}
-                            <img src='../../public/map.png'/>
-
                 </div>
             </YMaps>
         );
