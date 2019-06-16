@@ -12,20 +12,24 @@ class Menu extends React.Component {
 
   render() {
     return (
+<div>
+
+        <Router>
       <div className='ui container'>
-      <div className="ui stackable menu">
-         <div className="item">
-          <img src={pic} />
+        <div className="ui stackable menu">
+          <div className="item">
+            <img src={pic} />
+          </div>
+          <Link className="item" to='/logout'>LogOut</Link>
+          <Link className="item" to='/profile'>Profile</Link>
+          <Link className="item" to='/main'>Main</Link>
         </div>
-    <Router>
-      <Link className="item active" to='/logout'>LogOut</Link>
-      <Link className="item" to='/profile'>Profile</Link>
-      <Link className="item" to='/society'>Society</Link>
           <Route path='/profile' component={Profile} />
           <Route path='/main' component={Main} />
-      </Router>
       </div>
-      </div>
+        </Router>
+</div>
+
     );
   }
 }
