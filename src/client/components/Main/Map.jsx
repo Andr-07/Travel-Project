@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Form from './Form/Form.jsx'
+
 import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
 import ReactDOMServer from "react-dom/server";
 
@@ -10,27 +12,37 @@ export class TestMap extends React.Component {
         super();
 
         this.state = {
+            userName: '',
+            mapName: '',
+            description: '',
             markX: '',
             markY: '',
             placemarks: [
                 {
-                    coors: [52,53],
-                    i:0
-                }  
+                    coors: [52, 53],
+                    i: 0
+                }
             ],
-
-
             isMark: false,
             isLine: false,
             lines: [],
             back: false,
-
+            test1: ''
 
         }
         this.handleClick = this.handleClick.bind(this)
         this.polylineButton = this.polylineButton.bind(this)
     }
-    
+
+    handleInputChange = async ({ userName, mapName ,description  }) => {
+        console.log('>>>>', userName, mapName ,description )
+
+       await this.setState({userName, mapName ,description})
+
+        console.log('==STATE==',this.state.userName,this.state.mapName,this.state.description);
+        this.saveData();
+    }
+
 
     /* Кнопка перехода на маркер */
 
@@ -40,7 +52,7 @@ export class TestMap extends React.Component {
         })
     }
 
-  /* Кнопка перехода на линию */
+    /* Кнопка перехода на линию */
 
     polylineButton = () => {
         this.setState({
@@ -49,7 +61,7 @@ export class TestMap extends React.Component {
         console.log('falseortru line', this.state.isLine)
     }
 
-  /* Кнопка для рисования маркера и линии  */
+    /* Кнопка для рисования маркера и линии  */
 
     handleClick = (event) => {
         let coords1 = event.get('coords')
@@ -70,19 +82,19 @@ export class TestMap extends React.Component {
                 placemarks: [...this.state.placemarks, {
                     coors: [coord1, coord2],
                     i: count
-                
+
                 }],
                 isMark: !this.state.isMark,
                 // i: [...this.state.i, this.state.i + 1]
-            })            
+            })
         }
 
-console.log("placemarks: ", this.state.placemarks)
-console.log("state: ", this.state)
+        console.log("placemarks: ", this.state.placemarks)
+        console.log("state: ", this.state)
 
     }
 
-  /* Кнопка удаление последней линии  */
+    /* Кнопка удаление последней линии  */
 
     backButton = () => {
         console.log(this.state.lines)
@@ -93,31 +105,35 @@ console.log("state: ", this.state)
     }
 
     saveData = async () => {
-    let response = await fetch('/api/oneTour',
-    {method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        allMarks: this.state.placemarks,
-        allLines: this.state.lines
-     })
-    })
+        let response = await fetch('/api/oneTour',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    allMarks: this.state.placemarks,
+                    allLines: this.state.lines,
+                    userName: this.state.userName,
+                    mapName: this.state.mapName,
+                    description: this.state.description
+                })
+            })
 
-  }
+    }
 
     putInput() {
-           console.log('gotIt')
-           
-        }
-        
-        render() {
-            return (
-                
-                <YMaps>
+        console.log('gotIt')
+
+    }
+
+    render() {
+        return (
+
+            <YMaps>
                 <div>
-                    <Map style={{ height: "600px", width: "100%" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
+                    <Map style={{ height: "400px", width: "100%" , border: "solid"}} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
                         <Button
                             data={{ content: 'Mark' }}
                             options={{ maxWidth: 128 }}
@@ -163,18 +179,19 @@ console.log("state: ", this.state)
                             onClick={this.putInput}
 
                         />
-                        {this.state.placemarks.map(el => <Placemark geometry={el.coors} 
-                        options={{
-                            iconLayout: 'default#image',
-                            iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png"
-                        }}
-                        properties={{
-                            balloonContentHeader: `Пункт№ ${el.i}` }}
-                            /> )}
+                        {this.state.placemarks.map(el => <Placemark geometry={el.coors}
+                            options={{
+                                iconLayout: 'default#image',
+                                iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png"
+                            }}
+                            properties={{
+                                balloonContentHeader: `Пункт№ ${el.i}`
+                            }}
+                        />)}
                     </Map>
-                    {this.state.placemarks.map(el => <li>{el.coors}</li>)}
-                <button onClick={this.saveData}>Save it</button>
-                        {!this.state.isMark ? <input></input> : <h1></h1>}
+                    <Form handleInputChange={this.handleInputChange} />
+                    {/* <button onClick={this.saveData}>Save it</button> */}
+
                 </div>
             </YMaps>
         );

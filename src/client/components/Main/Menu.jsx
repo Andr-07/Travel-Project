@@ -5,6 +5,7 @@ import { Button, Form, FormGroup, Label, Input, FormText, Col, Row } from 'react
 import { match } from "minimatch";
 import { Redirect } from 'react-router-dom';
 import Profile from "./Profile/profile";
+import AllMaps from "./AllMaps/AllMaps";
 import Main from './Main';
 
 class Menu extends React.Component {
@@ -23,9 +24,11 @@ class Menu extends React.Component {
           <Link className="item" to='/logout'>LogOut</Link>
           <Link className="item" to='/profile'>Profile</Link>
           <Link className="item" to='/main'>Main</Link>
+          <Link className="item" to='/all'>All tours</Link>
         </div>
           <Route path='/profile' component={Profile} />
           <Route path='/main' component={Main} />
+          <Route path='/all' component={AllMaps} />
       </div>
         </Router>
 </div>
