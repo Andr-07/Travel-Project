@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
+import ReactDOMServer from "react-dom/server";
 
+let count = 0;
 export class TestMap extends React.Component {
 
     constructor() {
@@ -10,15 +12,25 @@ export class TestMap extends React.Component {
         this.state = {
             markX: '',
             markY: '',
-            placemarks: [],
+            placemarks: [
+                {
+                    coors: [52,53],
+                    i:0
+                }  
+            ],
+
+
             isMark: false,
             isLine: false,
             lines: [],
-            back: false
+            back: false,
+
+
         }
         this.handleClick = this.handleClick.bind(this)
         this.polylineButton = this.polylineButton.bind(this)
     }
+    
 
     /* Кнопка перехода на маркер */
 
@@ -51,12 +63,18 @@ export class TestMap extends React.Component {
             let coordsMarks = event.get('coords');
             let coord1 = coordsMarks[0];
             let coord2 = coordsMarks[1];
+            count++;
             this.setState({
                 markX: coord1,
                 markY: coord2,
-                placemarks: [...this.state.placemarks, [coord1, coord2]],
-                isMark: !this.state.isMark
-            })
+                placemarks: [...this.state.placemarks, {
+                    coors: [coord1, coord2],
+                    i: count
+                
+                }],
+                isMark: !this.state.isMark,
+                // i: [...this.state.i, this.state.i + 1]
+            })            
         }
 
 console.log("placemarks: ", this.state.placemarks)
@@ -89,10 +107,15 @@ console.log("state: ", this.state)
 
   }
 
-    render() {
-        return (
-
-            <YMaps>
+    putInput() {
+           console.log('gotIt')
+           
+        }
+        
+        render() {
+            return (
+                
+                <YMaps>
                 <div>
                     <Map style={{ height: "600px", width: "100%" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
                         <Button
@@ -130,18 +153,28 @@ console.log("state: ", this.state)
                             }}
                             properties={{
                                 hintContent: "Здесь можно выпить",
+                                balloonContentHeader: "Балун метки",
+                                balloonContentBody: "Содержимое <em>балуна</em> метки",
+                                balloonContentFooter: `<button onClick={${this.putInput}}>Save</button>`
                             }}
                             modules={
                                 ['geoObject.addon.balloon', 'geoObject.addon.hint', 'geoObject.addon.editor']
                             }
+                            onClick={this.putInput}
 
                         />
-                        {this.state.placemarks.map(el => <Placemark geometry={el} options={{
+                        {this.state.placemarks.map(el => <Placemark geometry={el.coors} 
+                        options={{
                             iconLayout: 'default#image',
                             iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png"
-                        }} />)}
+                        }}
+                        properties={{
+                            balloonContentHeader: `Пункт№ ${el.i}` }}
+                            /> )}
                     </Map>
+                    {this.state.placemarks.map(el => <li>{el.coors}</li>)}
                 <button onClick={this.saveData}>Save it</button>
+                        {!this.state.isMark ? <input></input> : <h1></h1>}
                 </div>
             </YMaps>
         );
