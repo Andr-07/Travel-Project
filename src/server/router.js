@@ -35,18 +35,21 @@ router.post('/reg', async (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
-  let allUsers = await User.find()
-  for (let i = 0; i < allUsers.length; i++) {
-    if (req.body.email === allUsers[i].email && req.body.password === allUsers[i].password) {
+  let allUsers = await User.findOne({email:req.body.email})
+  // for (let i = 0; i < allUsers.length; i++) {
+    if (req.body.email === allUsers.email && req.body.password === allUsers.password) {
       console.log('Успешная авторизация');
-      let userName = allUsers[i].userName
-      let email = allUsers[i].email
+      let userName = allUsers.userName
+      let email = allUsers.email
       return res.json({result:'OK',email:email,user:userName})
     }
-    else
-      console.log('Неуспешная авторизация');
+    else 
+    console.log('Неуспешная авторизация');
+    console.log(req.body.email);
+    console.log('EMAIL IZ BD',allUsers.email);
+    console.log('VSE USERI',allUsers);
     return res.json('Not OK')
-  }
-});
+  });
+// });
 
 module.exports = router;

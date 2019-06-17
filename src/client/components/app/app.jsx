@@ -6,10 +6,10 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 class App extends React.Component {
   render() {
     return (
-      <div> 
-<Router>
-  <Route exact path='/'  component={WelcomePage} />
-</Router>
+      <div>
+        <Router>
+          <Route exact path='/' component={WelcomePage} />
+        </Router>
       </div>
     );
   }
