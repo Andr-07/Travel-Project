@@ -21,23 +21,23 @@ export default class CenterMode extends Component {
       <div>
         <button>Upload</button>
         <Slider {...settings}>
-          <div>
-            <img align="middle" width="250" height="200" src={cat} />
+          <div className="items">
+            <img align="middle" width="200" height="200" src={cat} />
           </div>
-          <div>
-            <img align="middle" width="250" height="200" src={pic} />
+          <div className="items">
+            <img align="middle" width="200" height="200" src={pic} />
           </div>
-          <div>
-            <img align="middle" width="250" height="200" src={pic} />
+          <div className="items">
+            <img align="middle" width="200" height="200" src={pic} />
           </div>
-          <div>
-            <img align="middle" width="250" height="200" src={pic} />
+          <div className="items">
+            <img align="middle" width="200" height="200" src={pic} />
           </div>
-          <div>
-            <img align="middle" width="250" height="200" src={pic} />
+          <div className="items">
+            <img align="middle" width="200" height="200" src={pic} />
           </div>
-          <div>
-            <img align="middle" width="250" height="200" src={pic} />
+          <div className="items">
+            <img align="middle" width="200" height="200" src={pic} />
           </div>
         </Slider>
       </div>

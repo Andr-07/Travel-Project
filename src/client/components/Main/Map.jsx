@@ -177,7 +177,6 @@ console.log("state: ", this.state)
                 <button onClick={this.saveData}>Save it</button>
                         {!this.state.isMark ? <input></input> : <h1></h1>}
                 </div>
-                <CenterMode/>
             </YMaps>
         );
     }
