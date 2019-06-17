@@ -9,18 +9,33 @@ router.get('/test', (req, res) => {
 
 
 router.post('/oneTour', async (req, res, next) => {
-  let saveData = new Tour({
-    userName: 'Katrin',
-    tourName: 'Montengero',
-    description: 'The best hiking ever',
+
+  console.log("fuuul", req.body.allMarks )
+  let saveData = new Tour ({
+    userName: req.body.userName,
+    tourName: req.body.mapName,
+    description: req.body.description,
     allMarks: req.body.allMarks,
     allLines: req.body.allLines
   })
 
-  // await saveData.save();
-  // console.log(">>>>>>>>>>>>", saveData)
+  await saveData.save();
+  console.log(">>>>>>>>>>>>", saveData)
   res.json()
 });
+
+router.post('/profile', async (req, res, next) => {
+ let check = await Tour.findOne({userName: req.body.userName})
+  console.log(">>>>>>>>>>>>", check)
+  res.json(check)
+});
+
+router.post('/all', async (req, res, next) => {
+  let check = await Tour.find({})
+   console.log(">>>>>>>>>>>>", check)
+   res.json(check)
+ });
+
 
 router.post('/reg', async (req, res, next) => {
   let user = new User({
@@ -28,6 +43,7 @@ router.post('/reg', async (req, res, next) => {
     password: req.body.password,
     email: req.body.email
   })
+
 
   await user.save();
   console.log(">>>>>>>>>>>>", user)
