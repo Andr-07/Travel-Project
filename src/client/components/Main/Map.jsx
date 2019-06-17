@@ -1,4 +1,5 @@
 import React from 'react';
+import CenterMode from './CenterMode/CenterMode'
 
 import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
 import ReactDOMServer from "react-dom/server";
@@ -167,7 +168,7 @@ export class TestMap extends React.Component {
                         {this.state.placemarks.map(el => <Placemark geometry={el.coors} 
                         options={{
                             iconLayout: 'default#image',
-                            iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png"
+                            iconImageHref: `https://img.icons8.com/color/48/000000/${el.i}-circle.png`
                         }}
                         properties={{
                             balloonContentHeader: `Пункт№ ${el.i}` }}
