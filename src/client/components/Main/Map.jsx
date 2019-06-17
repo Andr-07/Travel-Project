@@ -27,7 +27,7 @@ export class TestMap extends React.Component {
             isLine: false,
             lines: [],
             back: false,
-            test1: ''
+            input: ''
 
         }
         this.handleClick = this.handleClick.bind(this)
@@ -132,7 +132,22 @@ export class TestMap extends React.Component {
         return (
 
             <YMaps>
-                <div>
+                <div onClick={
+                    (e) => {
+                        if(e.target.hasAttribute("data-baloon-button")) {
+                            console.log(e.target.getAttribute('data-baloon-id'))
+                        }     
+                    }
+                }
+                onSubmit={(e)=> {
+                    if(e.target.hasAttribute("data-baloon-input")) {
+                    console.log(">>>>>>>>>>",e.target.value)
+                            this.setState({
+                                input:e.target.value
+                            })
+                        }
+                }}
+                >
                     <Map style={{ height: "400px", width: "100%" , border: "solid"}} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
                         <Button
                             data={{ content: 'Mark' }}
@@ -171,13 +186,12 @@ export class TestMap extends React.Component {
                                 hintContent: "Здесь можно выпить",
                                 balloonContentHeader: "Балун метки",
                                 balloonContentBody: "Содержимое <em>балуна</em> метки",
-                                balloonContentFooter: `<button onClick={${this.putInput}}>Save</button>`
                             }}
                             modules={
                                 ['geoObject.addon.balloon', 'geoObject.addon.hint', 'geoObject.addon.editor']
                             }
-                            onClick={this.putInput}
-
+                            // onClick={this.putInput}
+                            
                         />
                         {this.state.placemarks.map(el => <Placemark geometry={el.coors}
                             options={{
@@ -185,7 +199,10 @@ export class TestMap extends React.Component {
                                 iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png"
                             }}
                             properties={{
-                                balloonContentHeader: `Пункт№ ${el.i}`
+                                balloonContentHeader: `Пункт№ ${el.i}`,
+                                balloonContentBody: `<input data-baloon-input placeholder="Описаниe" value=${this.state.input}></input>`,
+                                balloonContentFooter: `<button data-baloon-button data-baloon-id='${el.i}'>Сохранить</button>`
+
                             }}
                         />)}
                     </Map>
