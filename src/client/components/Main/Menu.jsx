@@ -12,23 +12,24 @@ class Menu extends React.Component {
 
   render() {
     return (
-<div>
+      <div>
 
         <Router>
-      <div className='ui container'>
-        <div className="ui stackable menu">
-          <div className="item">
-            <img src={pic} />
+          <div className='ui container'>
+            <div className="ui stackable menu">
+              <div className="item">
+                <img src={pic} />
+              </div>
+              <Link className="item" to='/logout'>LogOut</Link>
+              <Link className="item" to='/profile'>Profile</Link>
+              <Link className="item" to='/main'>Main</Link>
+              <Link className="item" to='/allmaps'>All Maps</Link>
+            </div>
+            <Route path='/profile' component={Profile} />
+            <Route path='/main' component={Main} />
           </div>
-          <Link className="item" to='/logout'>LogOut</Link>
-          <Link className="item" to='/profile'>Profile</Link>
-          <Link className="item" to='/main'>Main</Link>
-        </div>
-          <Route path='/profile' component={Profile} />
-          <Route path='/main' component={Main} />
-      </div>
         </Router>
-</div>
+      </div>
 
     );
   }
@@ -37,4 +38,9 @@ class Menu extends React.Component {
 
 
 export default Menu;
-
+       //     <button
+        //      onClick={() =>this.auth.signOut()}
+        //         className="ui google plus button">
+        //         <i className="google plus icon"></i>
+        //         SignOut
+        // </button>

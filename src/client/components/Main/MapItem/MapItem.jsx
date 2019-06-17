@@ -5,15 +5,15 @@ class MapItem extends React.Component {
 
     render() {
         return (
-            <div class="item">
-                <img class="ui avatar image" src={picmap} />
-                <div class="content">
-                    <a class="header">Creator Name </a>
-                    <div class="description">
+            <div className="item">
+                <img className="ui avatar image" src={picmap} />
+                <div className="content">
+                    <a className="header">Creator Name </a>
+                    <div className="description">
                         Description of this map
                     </div>
-                    <div class=" content">
-                        <i class="heart outline icon red "></i>
+                    <div className=" content">
+                        <i className="heart outline icon red "></i>
                             10 Likes
                     </div>
                 </div>

@@ -4,24 +4,24 @@ class Form extends React.Component {
 
     render() {
         return (
-            <form class="ui form">
+            <form className="ui form">
                 <br></br>
-                <div class="field">
+                <div className="field">
                     <label>CREATE YOUR MAP</label>
-                    <div class="two fields">
-                        <div class="field">
+                    <div className="two fields">
+                        <div className="field">
                             <input type="text" placeholder="YOUR NAME" />
                         </div>
-                        <div class="field">
+                        <div className="field">
                             <input type="text" placeholder="MAP NAME" />
                         </div>
                     </div>
                 </div>
-                <div class="field">
+                <div className="field">
                     <label>Description</label>
                     <input type="text" placeholder="TELL YOUR STORY" />
                 </div>
-                <button class="ui red button" type="submit">Submit</button>
+                <button className="ui red button" type="submit">Submit</button>
             </form>
         );
     }

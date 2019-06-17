@@ -19,9 +19,9 @@ class App extends React.Component {
     let coords1 = event.get('coords')
     if (this.state.draw === true) {
       this.setState(prevState => {
-          return {
-            coords: [...prevState.coords, coords1]
-          }
+        return {
+          coords: [...prevState.coords, coords1]
+        }
       })
     }
   }

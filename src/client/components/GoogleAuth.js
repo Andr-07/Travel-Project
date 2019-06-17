@@ -1,39 +1,55 @@
 import React from "react";
+import { Redirect } from 'react-router-dom';
 
 class GoogleAuth extends React.Component {
     state = { isSignedIn: null };
 
     componentDidMount() {
         window.gapi.load('client:auth2', () => {
-            window.gapi.client.init({
-                clientId: '272287560391-1m3i4gk05770o1dv0gsfnrtgoct0lcn5.apps.googleusercontent.com',
-                scope: 'email'
-            }).then(() => {
-                this.auth = window.gapi.auth2.getAuthInstance();
-                this.setState({ isSignedIn: this.auth.isSignedIn.get() });
-                this.auth.isSignedIn.listen(this.onAuthChange);
-            });
+            window.gapi.client
+                .init({
+                    clientId:
+                        '272287560391-a1dv466het12goa2v3hg9uvljmmtflb3.apps.googleusercontent.com',
+                    scope: 'email'
+                }).then(() => {
+                    this.auth = window.gapi.auth2.getAuthInstance();
+                    this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+                    this.auth.isSignedIn.listen(this.onAuthChange);
+                });
         });
     }
 
-onAuthChange = ()=>{
-this.setState({isSignedIn:this.auth.isSignedIn.get()})
-};
+    onAuthChange = () => {
+        this.setState({ isSignedIn: this.auth.isSignedIn.get() })
+    };
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/main' />
+        }
+    }
 
     renderAuthButton() {
         if (this.state.isSignedIn === null) {
-            return <div>I don't know is signed in</div>
+            return null
         } else if (this.state.isSignedIn) {
-            return <div>I am signed in!</div>
+            this.setState({ redirect: true })
+            return <div>{this.renderRedirect()}</div>
+
         } else {
-            return <div>I am not signed in</div>
+            return (
+                <button onClick={() => this.auth.signIn()} className="ui google plus button">
+                    <i className="google plus icon"></i>
+                    Google Plus
+        </button>
+            );
         }
     }
 
     render() {
         return (
-     
-                <div>{this.renderAuthButton()}
+
+            <div>{this.renderAuthButton()}
 
             </div>
         )
@@ -41,4 +57,5 @@ this.setState({isSignedIn:this.auth.isSignedIn.get()})
 }
 
 export default GoogleAuth;
+
 
