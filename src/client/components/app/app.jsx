@@ -1,6 +1,6 @@
 import React from "react";
-import Menu from '../Main/Menu';
-import Welcome from '../WelcomePage/Welcome';
+import WelcomePage from '../WelcomePage/Welcome';
+
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends React.Component {
@@ -8,8 +8,7 @@ class App extends React.Component {
     return (
       <div> 
 <Router>
-  <Route exact path='/'  component={Welcome} />
-  <Route  exact path='/main'  component={Menu} />
+  <Route exact path='/'  component={WelcomePage} />
 </Router>
       </div>
     );

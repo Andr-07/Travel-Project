@@ -9,4 +9,6 @@ const tourSchema = new mongoose.Schema({
     allLines: [Array]
 });
 
+
+
 module.exports = mongoose.model('Tour', tourSchema);
