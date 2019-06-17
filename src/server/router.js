@@ -9,6 +9,7 @@ router.get('/test', (req, res) => {
 
 
 router.post('/oneTour', async (req, res, next) => {
+  console.log("fuuul", req.body.allMarks )
   let saveData = new Tour ({
     userName: req.body.userName,
     tourName: req.body.mapName,
@@ -17,7 +18,7 @@ router.post('/oneTour', async (req, res, next) => {
     allLines: req.body.allLines
   })
 
-  // await saveData.save();
+  await saveData.save();
   console.log(">>>>>>>>>>>>", saveData)
   res.json()
 });

@@ -6,6 +6,7 @@ import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yand
 import ReactDOMServer from "react-dom/server";
 
 let count = 0;
+let input = 'start';
 export class TestMap extends React.Component {
 
     constructor() {
@@ -20,7 +21,8 @@ export class TestMap extends React.Component {
             placemarks: [
                 {
                     coors: [52, 53],
-                    i: 0
+                    i: 0,
+                    balloonInput:input
                 }
             ],
             isMark: false,
@@ -34,12 +36,12 @@ export class TestMap extends React.Component {
         this.polylineButton = this.polylineButton.bind(this)
     }
 
-    handleInputChange = async ({ userName, mapName ,description  }) => {
-        console.log('>>>>', userName, mapName ,description )
+    handleInputChange = async ({ userName, mapName, description }) => {
+        console.log('>>>>', userName, mapName, description)
 
-       await this.setState({userName, mapName ,description})
+        await this.setState({ userName, mapName, description })
 
-        console.log('==STATE==',this.state.userName,this.state.mapName,this.state.description);
+        console.log('==STATE==', this.state.userName, this.state.mapName, this.state.description);
         this.saveData();
     }
 
@@ -81,7 +83,8 @@ export class TestMap extends React.Component {
                 markY: coord2,
                 placemarks: [...this.state.placemarks, {
                     coors: [coord1, coord2],
-                    i: count
+                    i: count,
+                    balloonInput: input
 
                 }],
                 isMark: !this.state.isMark,
@@ -123,32 +126,29 @@ export class TestMap extends React.Component {
 
     }
 
-    putInput() {
-        console.log('gotIt')
-
-    }
 
     render() {
         return (
 
             <YMaps>
-                <div onClick={
-                    (e) => {
-                        if(e.target.hasAttribute("data-baloon-button")) {
-                            console.log(e.target.getAttribute('data-baloon-id'))
-                        }     
-                    }
-                }
-                onSubmit={(e)=> {
-                    if(e.target.hasAttribute("data-baloon-input")) {
-                    console.log(">>>>>>>>>>",e.target.value)
-                            this.setState({
-                                input:e.target.value
-                            })
-                        }
+                <form onSubmit={ (e) => {
+                    e.preventDefault();
+                    console.dir(e.target.elements[0].value)
+                    console.log('target',e.target.elements[1].id)
+                    let targetId = e.target.elements[1].id;
+                    input = e.target.elements[0].value;
+                    let newArr = [...this.state.placemarks]
+                    newArr[targetId].balloonInput = e.target.elements[0].value
+                    console.log('>>>',newArr[targetId].balloonInput)
+                    this.setState({
+                        placemarks: newArr
+                        })
+                        
+                    // })
+
                 }}
                 >
-                    <Map style={{ height: "400px", width: "100%" , border: "solid"}} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
+                    <Map style={{ height: "400px", width: "100%", border: "solid" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
                         <Button
                             data={{ content: 'Mark' }}
                             options={{ maxWidth: 128 }}
@@ -190,26 +190,27 @@ export class TestMap extends React.Component {
                             modules={
                                 ['geoObject.addon.balloon', 'geoObject.addon.hint', 'geoObject.addon.editor']
                             }
-                            // onClick={this.putInput}
-                            
+                        // onClick={this.putInput}
+
                         />
                         {this.state.placemarks.map(el => <Placemark geometry={el.coors}
                             options={{
                                 iconLayout: 'default#image',
-                                iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png"
+                                iconImageHref: `https://img.icons8.com/color/48/000000/${el.i}-circle.png`
                             }}
                             properties={{
-                                balloonContentHeader: `Пункт№ ${el.i}`,
-                                balloonContentBody: `<input data-baloon-input placeholder="Описаниe" value=${this.state.input}></input>`,
-                                balloonContentFooter: `<button data-baloon-button data-baloon-id='${el.i}'>Сохранить</button>`
+                                balloonContentHeader: `Пункт№ ${el.i} - ${el.balloonInput}`, 
+                                balloonContentBody: `<input data-baloon-input placeholder="Описаниe" value=${el.balloonInput}></input>`,
+                                balloonContentFooter: `<button data-baloon-button data-balloon-id='${el.i}' id='${el.i}'>Сохранить</button>`
 
                             }}
                         />)}
                     </Map>
                     <Form handleInputChange={this.handleInputChange} />
                     {/* <button onClick={this.saveData}>Save it</button> */}
+                    
 
-                </div>
+                </form>
             </YMaps>
         );
     }

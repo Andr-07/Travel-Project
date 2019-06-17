@@ -30,13 +30,11 @@ class AllMaps extends React.Component {
   
         <h1> Все туры:</h1>
         {this.state.arr.map(el => <ul>
-            <h3>{el.tourName} - {el.description} <YMaps>
+            <h3>{el.tourName} - {el.description} 
       <div>
       <h1>{this.state.title}</h1>
       </div>
-      <Map style={{ height: "100px", width: "20%" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }}>
-      </Map>
-      </YMaps></h3>
+      </h3>
         Author: {el.userName}
         
         </ul>)}

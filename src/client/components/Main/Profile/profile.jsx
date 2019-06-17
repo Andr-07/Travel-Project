@@ -19,7 +19,7 @@ class Profile extends React.Component {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      userName: 'Katrin',
+      userName: 'Sergey',
     })
   })
     let jsonRes = await response.json()
@@ -40,7 +40,20 @@ class Profile extends React.Component {
       <h1>{this.state.title}</h1>
       </div>
       <Map style={{ height: "300px", width: "30%" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }}>
-      {this.state.allMarks.map(el => <Placemark geometry={el} /> )}
+      {this.state.allMarks.map(el => 
+      <Placemark geometry={el.coors} 
+      properties={{
+        balloonContentHeader: `Пункт№ ${el.i} - ${el.balloonInput}`
+      }}
+      options={{
+        iconLayout: 'default#image',
+        iconImageHref: `https://img.icons8.com/color/48/000000/${el.i}-circle.png`
+    }}
+      modules={
+        ['geoObject.addon.balloon', 'geoObject.addon.hint', 'geoObject.addon.editor']
+    }
+      
+      /> )}
       <Polyline
                             geometry={[...this.state.allLines]}
                             options={{
