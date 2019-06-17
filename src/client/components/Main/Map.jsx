@@ -1,4 +1,5 @@
 import React from 'react';
+import CenterMode from './CenterMode/CenterMode'
 
 import Form from './Form/Form.jsx'
 
@@ -117,14 +118,17 @@ export class TestMap extends React.Component {
                 },
                 body: JSON.stringify({
                     allMarks: this.state.placemarks,
+
                     allLines: this.state.lines,
                     userName: this.state.userName,
                     mapName: this.state.mapName,
                     description: this.state.description
+
                 })
             })
 
     }
+
 
 
     render() {
@@ -149,6 +153,8 @@ export class TestMap extends React.Component {
                 }}
                 >
                     <Map style={{ height: "400px", width: "100%", border: "solid" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
+
+  
                         <Button
                             data={{ content: 'Mark' }}
                             options={{ maxWidth: 128 }}
@@ -193,6 +199,7 @@ export class TestMap extends React.Component {
                         // onClick={this.putInput}
 
                         />
+
                         {this.state.placemarks.map(el => <Placemark geometry={el.coors}
                             options={{
                                 iconLayout: 'default#image',
@@ -211,6 +218,7 @@ export class TestMap extends React.Component {
                     
 
                 </form>
+
             </YMaps>
         );
     }

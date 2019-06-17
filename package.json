@@ -25,16 +25,19 @@
     "geojson": "^0.5.0",
     "handlebars": "^4.0.12",
     "http-proxy-middleware": "^0.19.0",
+    "jquery": "^3.4.1",
     "mongoose": "^5.4.14",
     "prop-types": "^15.6.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-leaflet": "^2.4.0",
     "react-router-dom": "^5.0.1",
+    "react-slick": "^0.24.0",
     "react-yandex-maps": "^3.0.2",
     "reactstrap": "^8.0.0",
     "redis": "^2.8.0",
-    "redison": "0.0.9"
+    "redison": "0.0.9",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

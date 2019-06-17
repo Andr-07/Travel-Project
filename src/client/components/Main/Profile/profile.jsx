@@ -1,6 +1,8 @@
 import React from 'react';
+
 // import Menu from '../Menu';
 import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
+
 
 
 class Profile extends React.Component {
@@ -35,6 +37,7 @@ class Profile extends React.Component {
 
   render() {
     return (
+
       <YMaps>
       <div>
       <h1>{this.state.title}</h1>
@@ -66,7 +69,9 @@ class Profile extends React.Component {
 
       </Map>
       </YMaps>
+
     )
+
   }
 }
 

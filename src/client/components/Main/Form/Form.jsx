@@ -28,6 +28,7 @@ class Form extends React.Component {
 
     render() {
         return (
+
             <form class="ui form"
                 onSubmit={this.funcOnButton}
                 onChange={this.onChangeFunc}
@@ -38,7 +39,7 @@ class Form extends React.Component {
                
                 >
                     <label>CREATE YOUR MAP</label>
-                    <div class="two fields">
+                    <div className="two fields">
                         <div class="field">
                             <input type="text" placeholder="YOUR NAME" name='userName' value={this.state.userName} />
                         </div>
@@ -48,12 +49,15 @@ class Form extends React.Component {
                     </div>
                 </div>
                 <div class="field"  >
+
                     <label>Description</label>
                     <input type="text" placeholder="TELL YOUR STORY" name='description' value={this.state.description} />
                 </div>
-                <button class="ui red button" type="submit"
+
+                <button className="ui red button" type="submit"
 
                 >Submit</button>
+
             </form>
         );
     }
