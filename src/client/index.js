@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { CookiesProvider } from 'react-cookie';
 import { createStore } from 'redux';
 
-import Welcome from './components/WelcomePage/Welcome';
 import App from './components/app/app'
 import reducers from '../redux/reducers';
 

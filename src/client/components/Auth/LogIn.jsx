@@ -22,9 +22,9 @@ class LogIn extends React.Component {
                     email: this.state.email
                 })
             })
-        console.log(response)
+        // console.log(response)
         let whatIGet = await response.json()
-        console.log(whatIGet)
+        // console.log(whatIGet)
         if (whatIGet.result === 'OK') {
             this.props.setLogin(whatIGet.user)
             this.setState({ redirect: true })

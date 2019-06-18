@@ -26,6 +26,9 @@ class OneTour extends React.Component {
           })
         let jsonRes = await response.json()
         console.log(">>>>>>>>>>>", jsonRes)
+        console.log(">>>>>>>>>>>", jsonRes.allMarks)
+        console.log(">>>>>>>>>>>", jsonRes.allLines)
+    
         this.setState({
           oneTour: jsonRes,
           allMarks: jsonRes.allMarks,
