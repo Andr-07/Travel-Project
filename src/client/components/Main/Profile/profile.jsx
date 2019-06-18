@@ -21,7 +21,7 @@ class Profile extends React.Component {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      userName: 'Sergey',
+      userName: 'Katrin',
     })
   })
     let jsonRes = await response.json()

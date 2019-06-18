@@ -1,5 +1,5 @@
 import React from 'react';
-// import GoogleAuth from '../GoogleAuth';
+import GoogleAuth from '../GoogleAuth';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class OAuth extends React.Component {
@@ -12,7 +12,7 @@ class OAuth extends React.Component {
 
                 <div className="or"></div>
 
-                {/* <GoogleAuth /> */}
+                <GoogleAuth />
 
                 <div className="or"></div>
                 <Link className="ui button" to='/login'>Log In</Link>

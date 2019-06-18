@@ -61,9 +61,9 @@ router.post('/login', async (req, res, next) => {
     }
     else 
     console.log('Неуспешная авторизация');
-    console.log(req.body.email);
-    console.log('EMAIL IZ BD',allUsers.email);
-    console.log('VSE USERI',allUsers);
+    // console.log(req.body.email);
+    // console.log('EMAIL IZ BD',allUsers.email);
+    // console.log('VSE USERI',allUsers);
     return res.json('Not OK')
   });
 // });
