@@ -9,6 +9,7 @@ import { signOut } from '../../../redux/actions';
 import Main from '../Main/Main';
 import pic from '../../public/pic.png';
 import Profile from '../Main/Profile/profile';
+import OneTour from "../Main/OneTour/OneTour";
 import All from '../Main/AllMaps/AllMaps';
 class Menu extends React.Component {
 
@@ -40,6 +41,7 @@ class Menu extends React.Component {
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/main' component={Main} />
         <Route exact path='/all' component={All} />
+        <Route exact path='/all/:id' render={(props) => <OneTour {...props} />}/>
         </Switch>
 
       </div>

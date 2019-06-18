@@ -57,7 +57,7 @@ class App extends React.Component {
           <Route exact path='/' component={OAuth} />
           <Route path='/login' render={() => < Login setLogin={this.setLogin} isLogin={this.state.isLogin} />} />
           <Route path='/reg' render={null} />
-
+      
           <Route render={() => <Menu name = {this.state.name} cookie={cookies} destroyCookies={this.setLogout} />} />
         </Switch>
 
