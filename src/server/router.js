@@ -19,20 +19,26 @@ router.post('/oneTour', async (req, res, next) => {
     allLines: req.body.allLines
   })
 
-  await saveData.save();
+  // await saveData.save();
   console.log(">>>>>>>>>>>>", saveData)
   res.json()
 });
 
 router.post('/profile', async (req, res, next) => {
  let check = await Tour.findOne({userName: req.body.userName})
-  console.log(">>>>>>>>>>>>", check)
+  // console.log(">>>>>>>>>>>>", check)
   res.json(check)
 });
 
 router.post('/all', async (req, res, next) => {
   let check = await Tour.find({})
-   console.log(">>>>>>>>>>>>", check)
+  //  console.log(">>>>>>>>>>>>", check)
+   res.json(check)
+ });
+
+ router.post('/idTour', async (req, res, next) => {
+  let check = await Tour.findOne({_id:req.body.id})
+   console.log("+++++", check)
    res.json(check)
  });
 
