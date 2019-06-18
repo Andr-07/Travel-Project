@@ -33,10 +33,10 @@ class AllMaps extends React.Component {
         {this.state.arr.map(el => <ul>
           <h3>{el.tourName} - {el.description}
             <div>
-              <h1>{this.state.title}</h1>
             </div>
           </h3>
           Author: {el.userName}
+          <h4></h4>
 
         </ul>)}
       </div>
