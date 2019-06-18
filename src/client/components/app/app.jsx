@@ -3,6 +3,7 @@ import React from "react";
 import Menu from '../Main/Menu';
 import Login from '../Auth/LogIn';
 import OAuth from '../Auth/OAuthButtons';
+import Reg from '../Auth/Reg';
 
 
 import Cookies from 'universal-cookie';
@@ -56,7 +57,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={OAuth} />
           <Route path='/login' render={() => < Login setLogin={this.setLogin} isLogin={this.state.isLogin} />} />
-          <Route path='/reg' render={null} />
+          <Route path='/reg' component={Reg} />
       
           <Route render={() => <Menu name = {this.state.name} cookie={cookies} destroyCookies={this.setLogout} />} />
         </Switch>
