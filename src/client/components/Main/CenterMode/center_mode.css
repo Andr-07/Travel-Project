@@ -1,9 +1,9 @@
-.container {
-    margin: 0 auto;
-    padding: 40px;
-    width: 80%;
+.slider {
+    margin: auto;
+    height: 230px;
+    width: 90%;
     color: #333;
-    /* background: #419be0; */
+    background: #419be0;
   }
   
   .items {
@@ -106,5 +106,11 @@
     right: 20px !important;
   }
   
+  .ui .input {
+    margin-bottom: 30px;
+  }
+  /* .ui .button .active{
+    padding: 0
+  } */
 
   /* `https://img.icons8.com/color/48/000000/${el.i}-circle.png` */

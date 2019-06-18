@@ -19,14 +19,10 @@ export class TestMap extends React.Component {
                     i:0
                 }  
             ],
-
-
             isMark: false,
             isLine: false,
             lines: [],
             back: false,
-
-
         }
         this.handleClick = this.handleClick.bind(this)
         this.polylineButton = this.polylineButton.bind(this)
@@ -174,7 +170,6 @@ export class TestMap extends React.Component {
                             balloonContentHeader: `Пункт№ ${el.i}` }}
                             /> )}
                     </Map>
-
                     {this.state.placemarks.map(el => <li>{el.coors}</li>)}
                 <button onClick={this.saveData}>Save it</button>
                         {!this.state.isMark ? <input></input> : <h1></h1>}
