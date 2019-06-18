@@ -7,6 +7,7 @@ import OAuth from './OAuthButtons';
 import Cookies from 'universal-cookie';
 import Profile from "../Main/Profile/profile";
 import AllMaps from "../Main/AllMaps/AllMaps";
+import OneTour from "../Main/OneTour/OneTour";
 import { withCookies } from 'react-cookie';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
@@ -50,7 +51,8 @@ class WelcomePage extends React.Component {
         <Route path='/reg' component={Reg} />
         <Route path='/main' render={(props) => <Menu {...props} cookies={this.props.cookies} destroyCookies={this.setLogout} />} /> 
         <Route path='/profile' component={Profile} />
-        <Route path='/all' component={AllMaps} />
+        <Route exact path='/all' component={AllMaps} />
+        <Route exact path='/all/:id' render={(props) => <OneTour {...props} />}/>
         <Route component={OAuth} />
       </Switch>
     );
