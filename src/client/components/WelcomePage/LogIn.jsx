@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+
 class LogIn extends React.Component {
     state = {
         password: '',
@@ -25,6 +26,7 @@ class LogIn extends React.Component {
         let whatIGet = await response.json()
         console.log(whatIGet)
         if (whatIGet.result === 'OK') {
+            this.props.setLogin(whatIGet.user)
             this.setState({ redirect: true })
         }
     }
