@@ -2,7 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/client/index.js',
+  entry: __dirname + '/src/client/index.js',
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, '.build/client'),
@@ -11,7 +11,7 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: 'src/client/public',
+        from: __dirname + '/src/client/public',
         to: 'public'
       }
     ], { debug: 'info' })

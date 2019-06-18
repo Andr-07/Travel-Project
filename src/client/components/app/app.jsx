@@ -1,15 +1,22 @@
 import React from "react";
 import WelcomePage from '../WelcomePage/Welcome';
+import Menu from '../Main/Menu';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class App extends React.Component {
   render() {
     return (
-      <div> 
-<Router>
-  <Route exact path='/'  component={WelcomePage} />
-</Router>
+      <div>
+        <Switch>
+          <Route exact path='/' render={null} />
+          <Route path='/login' render={null} />
+          <Route path='/reg' render={null} />
+          {/* <Route component={Menu} /> */}
+        </Switch>
+
+        <WelcomePage />
+
       </div>
     );
   }

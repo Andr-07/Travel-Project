@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import Menu from '../Menu';
+import Menu from '../Menu';
 import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
 
 
@@ -40,6 +40,7 @@ class Profile extends React.Component {
 
       <YMaps>
       <div>
+      {/* <Menu/> */}
       <h1>{this.state.title}</h1>
       </div>
       <Map style={{ height: "300px", width: "30%" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }}>

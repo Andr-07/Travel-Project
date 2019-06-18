@@ -3,13 +3,14 @@ import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yand
 
 
 class AllMaps extends React.Component {
-    state = {
-        arr: []
-    }
+  state = {
+    arr: []
+  }
 
-    async componentDidMount() {
-        let response = await fetch('/api/all',
-        {method: 'POST',
+  async componentDidMount() {
+    let response = await fetch('/api/all',
+      {
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -17,31 +18,31 @@ class AllMaps extends React.Component {
         body: JSON.stringify({
         })
       })
-      let jsonRes = await response.json()
-        console.log(">>>>>>>>>>>",jsonRes)
-       this.setState ({
-           arr: jsonRes
-       })
-    }
-
-    render() {
-      return (
-  <div>
-  
-        <h1> Все туры:</h1>
-        {this.state.arr.map(el => <ul>
-            <h3>{el.tourName} - {el.description} 
-      <div>
-      <h1>{this.state.title}</h1>
-      </div>
-      </h3>
-        Author: {el.userName}
-        
-        </ul>)}
-  </div>
-  
-      );
-    }
+    let jsonRes = await response.json()
+    console.log(">>>>>>>>>>>", jsonRes)
+    this.setState({
+      arr: jsonRes
+    })
   }
 
-  export default AllMaps;
+  render() {
+    return (
+      <div>
+
+        <h1> Все туры:</h1>
+        {this.state.arr.map(el => <ul>
+          <h3>{el.tourName} - {el.description}
+            <div>
+              <h1>{this.state.title}</h1>
+            </div>
+          </h3>
+          Author: {el.userName}
+
+        </ul>)}
+      </div>
+
+    );
+  }
+}
+
+export default AllMaps;
