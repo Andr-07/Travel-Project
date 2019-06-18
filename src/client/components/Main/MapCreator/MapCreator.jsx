@@ -7,7 +7,7 @@ class MapCreator extends React.Component {
     return (
       <div>
         < TestMap />
-            <Form/>
+            {/* <Form/> */}
       </div>
      
     );

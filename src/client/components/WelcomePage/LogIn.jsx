@@ -8,14 +8,7 @@ class LogIn extends React.Component {
         password: '',
         email: ''
     }
-  // constructor(props) {
-  //   super(props);
- 
-  //   const { cookies } = props;
-  //   this.state = {
-  //     name: cookies.get('name') || 'Ben'
-  //   };
-  // }
+
     checkingRegistration = async () => {
         let response = await fetch('/api/login',
             {
