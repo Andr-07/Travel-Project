@@ -6,6 +6,7 @@ import Login from '../Auth/LogIn';
 import OAuth from '../Auth/OAuthButtons';
 import Reg from '../Auth/Reg';
 
+
 import Cookies from 'universal-cookie';
 import { withCookies } from 'react-cookie';
 
@@ -103,6 +104,7 @@ class App extends React.Component {
       <div>
         {this.renderRedirect()}
         <Switch>
+
           <Route exact path='/' render={() => <OAuth check={this.state} setLogin={this.onSignedInClick} setLogOut={this.onSignedOutClick} />} />
 
           <Route path='/login' render={() => < Login setLogin={this.setLogin} isLogin={this.state.isSignedIn} />} />
