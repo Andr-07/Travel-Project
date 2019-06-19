@@ -31,13 +31,19 @@ class AllMaps extends React.Component {
     return (
       <div>
         <h1> Все туры:</h1>
+          <div class="ui grid">
+        <div class="row">
         {this.state.arr.map(el =>
+          <div class="five wide column">
 
           <div className="ui raised link card">
             <div className="content">
-              <div className="header">{el.tourName}</div>
+              <div className="header">
+              {el.tourName}</div>
               <div class="meta">
-                <span className="category">{el.description}</span>
+                <span className="category">
+                {el.description}
+                </span>
               </div>
               <div className="description">
                 <Link to={`/all/${el._id}`}>Подробнее</Link>
@@ -50,7 +56,12 @@ class AllMaps extends React.Component {
 
               </div>
             </div>
-          </div>)}
+          </div>
+          </div>
+          
+          )}
+          </div>
+          </div>
           </div>
 
 
@@ -73,23 +84,3 @@ class AllMaps extends React.Component {
     
     export default AllMaps;
     
-      {/* {this.state.arr.map(el =>
-
-    //       <div className="ui raised link card">
-    //         <div className="content">
-    //           <div className="header">{el.tourName}</div>
-    // <div class="meta">
-    //               <span className="category">{el.description}</span>
-    //             </div>
-    //             <div className="description">
-    //             <Link to={`/all/${el._id}`}>Подробнее</Link>
-    //             </div>
-    //           </div>
-    //           <div className="extra content">
-    //             <div className="right floated author">
-    //             <img className="ui avatar image" src={"https://mir-avatarok.3dn.ru/_si/0/03342719.jpg"}> <h4>Author: {el.userName}</h4></img>
-                  
-                  
-    //             </div>
-    //           </div>
-    //         </div>} */}

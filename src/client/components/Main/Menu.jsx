@@ -10,6 +10,7 @@ import Main from '../Main/Main';
 import pic from '../../public/pic.png';
 import Profile from '../Main/Profile/profile';
 import OneTour from "../Main/OneTour/OneTour";
+import ProfileOneTour from "../Main/ProfileOneTour/ProfileOneTour";
 import All from '../Main/AllMaps/AllMaps';
 class Menu extends React.Component {
 
@@ -31,17 +32,18 @@ class Menu extends React.Component {
           <a className="item"
             onClick={this.props.destroyCookies}>LogOut</a>
 
-          <Link className="item" to='/profile'>Profile</Link>
+          <Link className="item" to='/profile/0'>Profile</Link>
           <Link className="item" to='/main'>Main</Link>
           <Link className="item" to='/all'>All tours</Link>
        
         </div>
         {/* <Main /> */}
         <Switch>
-        <Route exact path='/profile' component={Profile} />
+        <Route exact path='/profile/:id' component={Profile} />
         <Route exact path='/main' component={Main} />
         <Route exact path='/all' component={All} />
         <Route exact path='/all/:id' render={(props) => <OneTour {...props} />}/>
+        <Route exact path='/oneprofile' render={(props) => <ProfileOneTour {...props} />}/>
         </Switch>
 
       </div>

@@ -43,6 +43,30 @@ class OneTour extends React.Component {
         console.log(this.state.center)
         return (
                         <div>
+      <div class="ui internally celled grid">
+  <div class="row">
+    <div class="three wide column">
+      hh
+    </div>
+    <div class="ten wide column">
+      <p></p>
+    </div>
+    <div class="three wide column">
+      hh
+    </div>
+  </div>
+  <div class="row">
+    <div class="three wide column">
+      hhh
+    </div>
+    <div class="ten wide column">
+      <p></p>
+    </div>
+    <div class="three wide column">
+      hh
+    </div>
+  </div>
+</div>
                <h1>{this.state.oneTour.tourName}</h1>
                <h3>Описание тура:</h3>
                <span>{this.state.oneTour.description}</span>
@@ -81,22 +105,7 @@ class OneTour extends React.Component {
             </Map>
             </YMaps>
 
-            {/* <div class="ui raised link card">
-  <div class="content">
-    <div class="header">Cute Dog</div>
-    <div class="meta">
-      <span class="category">Animals</span>
-    </div>
-    <div class="description">
-      <p></p>
-    </div>
-  </div>
-  <div class="extra content">
-    <div class="right floated author">
-      <img class="ui avatar image" src="/images/avatar/small/matt.jpg"> Matt></img>
-    </div>
-  </div>
-</div> */}
+
 
             </div>
 
