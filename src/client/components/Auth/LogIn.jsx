@@ -31,11 +31,11 @@ class LogIn extends React.Component {
         }
     }
 
-    renderRedirect = () => {
-        if (this.state.redirect) {
-            return <Redirect to='/main' />
-        }
-    }
+    // renderRedirect = () => {
+    //     if (this.state.redirect) {
+    //         return <Redirect to='/main' />
+    //     }
+    // }
     render() {
         return (
 
@@ -51,7 +51,7 @@ class LogIn extends React.Component {
                         <input type="text" name="password" placeholder="Password" value={this.state.password}
                             onChange={(event) => this.setState({ password: event.target.value })} />
                     </div>
-                    {this.renderRedirect()}
+                    {/* {this.renderRedirect()} */}
                     <button className="ui button" type="submit" onClick={this.checkingRegistration}>LogIn</button>
                 </div>
             </div>
