@@ -30,11 +30,24 @@ router.post('/profile', async (req, res, next) => {
   res.json(check)
 });
 
+router.post('/deleteMap', async (req, res, next) => {
+  let check = await Tour.findByIdAndRemove(req.body.id)
+   console.log("deleteteeid", check)
+   res.json(check)
+ });
+
 router.post('/all', async (req, res, next) => {
   let check = await Tour.find({})
   //  console.log(">>>>>>>>>>>>", check)
    res.json(check)
  });
+
+ router.post('/top', async (req, res, next) => {
+  let check = await Tour.find({}).sort({_id:-1}).limit(5)
+  //  console.log(">>>>>>>>>>>>", check)
+   res.json(check)
+ });
+
 
  router.post('/idTour', async (req, res, next) => {
   let check = await Tour.findOne({_id:req.body.id})

@@ -24,13 +24,6 @@ class Profile extends React.Component {
     listNum:[]
   }
 
-//   createLinks = () => {
-//     let a;
-//     for (let i = 0; i < 3; i++) {
-//       a += <Link className="item" to={`/profile/${i}`}>{i+1}</Link>
-//   }
-//   return a;
-// }
 
   createLinks = (number) => {
     this.setState({numberOfMaps:number})
@@ -85,14 +78,7 @@ console.log(this.state.listNum)
             <div class="ui borderless menu">
              {this.state.listNum.map(el=> <Link className="item" to={`/profile/${el}`}>{el+1}</Link>
 )}
-              {/* {this.createLinks()} */}
 
-              {/* <Link className="item" to='/profile/0'>1</Link>
-              <Link className="item" to='/profile/1'>2</Link>
-              <a class="item">3</a>
-              <a class="item">4</a>
-              <a class="item">5</a>
-              <a class="item">6</a> */}
             </div>
 
 

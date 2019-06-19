@@ -43,7 +43,7 @@ class OneTour extends React.Component {
         console.log(this.state.center)
         return (
                         <div>
-      <div class="ui internally celled grid">
+      {/* <div class="ui internally celled grid">
   <div class="row">
     <div class="three wide column">
       hh
@@ -65,19 +65,22 @@ class OneTour extends React.Component {
     <div class="three wide column">
       hh
     </div>
-  </div>
-</div>
+    </div>
+  </div> */}
+               <div class="ui blue segment">
                <h1>{this.state.oneTour.tourName}</h1>
-               <h3>Описание тура:</h3>
-               <span>{this.state.oneTour.description}</span>
-               <h3>Автор: </h3>
-               <span>{this.state.oneTour.userName}</span>
-            
+
+  </div>
+  <div class="ui grid">
+        <div class="row">
+          <div class="eleven wide column">
+  <div class="ui center aligned segment">
+
             <YMaps>
             <div>
             <h1>{this.state.title}</h1>
             </div>
-            <Map style={{ height: "300px", width: "30%" }} defaultState={{ center: this.state.center, zoom: 9 }}>
+            <Map style={{ height: "400px", width: "100%" }} defaultState={{ center: this.state.center, zoom: 9 }}>
             {this.state.allMarks.map(el => 
             <Placemark geometry={el.coors} 
             properties={{
@@ -96,14 +99,98 @@ class OneTour extends React.Component {
                                   geometry={[...this.state.allLines]}
                                   options={{
                                       balloonCloseButton: false,
-                                      strokeColor: '#DC143C',
-                                      strokeWidth: 3,
+                                      strokeColor: '#0000FF',
+                                      strokeWidth: 4,
                                       strokeOpacity: 0.5,
+                                      strokeStyle: 'dot'
                                   }}
                               />
       
             </Map>
             </YMaps>
+</div>
+<div class="ui grid">
+        <div class="row">
+          <div class="twelve wide column">
+               <h3>Описание тура:</h3>
+               <span>{this.state.oneTour.description}</span>
+               </div>
+               <div class="four wide column">
+               <h3>Автор: </h3>
+               <span>{this.state.oneTour.userName}</span>
+               </div>
+               </div>
+            </div>
+
+          </div>
+          <div class="five wide column">
+          <div class="ui comments">
+  <h3 class="ui dividing header">Комментарии:</h3>
+  <div class="comment">
+    <a class="avatar">
+      <img src={"https://mir-avatarok.3dn.ru/_si/0/03342719.jpg"}/>
+    </a>
+    <div class="content">
+      <a class="author">Matt</a>
+      <div class="metadata">
+        <span class="date">Today at 5:42PM</span>
+      </div>
+      <div class="text">
+        How artistic!
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
+    </div>
+  </div>
+  <div class="comment">
+    <a class="avatar">
+      <img src={"https://mir-avatarok.3dn.ru/_si/0/03342719.jpg"}/>
+    </a>
+    <div class="content">
+      <a class="author">Elliot Fu</a>
+      <div class="metadata">
+        <span class="date">Yesterday at 12:30AM</span>
+      </div>
+      <div class="text">
+        <p>This has been very useful for my research. Thanks as well!</p>
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
+    </div>
+  </div>
+  <div class="comment">
+    <a class="avatar">
+      <img src={"https://mir-avatarok.3dn.ru/_si/0/03342719.jpg"}/>
+    </a>
+    <div class="content">
+      <a class="author">Joe Henderson</a>
+      <div class="metadata">
+        <span class="date">5 days ago</span>
+      </div>
+      <div class="text">
+        Dude, this is awesome. Thanks so much
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
+    </div>
+  </div>
+  <form class="ui reply form">
+    <div class="field">
+      <textarea></textarea>
+    </div>
+    <div class="ui blue labeled submit icon button">
+      <i class="icon edit"></i> Add Reply
+    </div>
+  </form>
+</div>
+          </div>
+          </div>
+          </div>
+
+
 
 
 
