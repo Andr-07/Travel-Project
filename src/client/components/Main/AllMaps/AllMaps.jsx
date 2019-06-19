@@ -57,6 +57,7 @@ class AllMaps extends React.Component {
               </div>
             </div>
           </div>
+          <br></br>
           </div>
           
           )}
