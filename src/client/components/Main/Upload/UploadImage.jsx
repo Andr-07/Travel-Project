@@ -22,8 +22,9 @@ export default class UploadImage extends React.Component {
         };
         axios.post("/api/upload", formData, config)
             .then((response) => {
-                alert("The file is successfully uploaded");
+                console.log("The file is successfully uploaded");
             }).catch((error) => {
+                console.log("Error");
             });
     }
     onChange(e) {
@@ -34,15 +35,11 @@ export default class UploadImage extends React.Component {
 
     render() {
         return (
-            <div className="ui mini form">
                 <form className="ui form" onSubmit={this.onFormSubmit}>
                     <h4 className="ui dividing header">File upload</h4>
-                    <div className="field">
                         <input className="inputfile" type="file" name="myImage" onChange={this.onChange} />
-                    </div>
                     <button className="ui button" type="submit">Upload</button>
                 </form>
-            </div>
         )
     }
 }

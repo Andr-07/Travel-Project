@@ -21,13 +21,13 @@ const upload = multer({
   limits: { fileSize: 1000000 },
 }).single("myImage");
 
-router.post("/upload", (req, res) => {  
+router.post("/upload", (req, res) => {
   upload(req, res, err => {
     console.log("Request ---", req.body);
     console.log("Request file ---", req.file);//Here you get file.
     /*Now do where ever you want to do*/
     if (!err)
-      return res.send(200).end();
+    return res.send(200).end();
   });
 });
 
