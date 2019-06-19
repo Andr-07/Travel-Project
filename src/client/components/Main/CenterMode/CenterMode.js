@@ -3,18 +3,7 @@ import Slider from "react-slick";
 import './center_mode.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import pic from './pic.jpg'
-import cat from './image.jpg'
-// import images from '../../../../../public/uploads/newName-1560869575062.jpg'
-const images = require.context('../../../../../public/uploads', true);
-
-images.keys().forEach(element => {
-  console.log(images(element))
-});
-
-
-
-
+const images = require.context('../../../../../public/uploads', true, /\.(png|jpe?g|svg)$/);
 
 export default class CenterMode extends Component {
   render() {
@@ -26,22 +15,22 @@ export default class CenterMode extends Component {
       slidesToShow: 3,
       focusOnSelect: true
     };
-    
+
+    let newImg = '';
+
     return (
       <div className='slider' >
         <Slider {...settings}>
-            <div className="items">
-              <img align="middle" width="180" height="200" src={images} />
-            </div>
-            <div className="items">
-              <img align="middle" width="180" height="200" src={cat} />
-            </div>
-            <div className="items">
-              <img align="middle" width="180" height="200" src={cat} />
-            </div>
-            <div className="items">
-              <img align="middle" width="180" height="200" src={cat} />
-            </div>
+          {
+            images.keys().map(element => {
+              newImg = images(element)
+              return (
+                <div key={element} className="items">
+                  <img className="imageContainer" align="middle" layout="fill"/*width="180" height="200"*/ src={newImg} />
+                </div>
+              )
+            })
+          }
         </Slider>
       </div>
     );

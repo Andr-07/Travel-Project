@@ -1,5 +1,6 @@
 import React from 'react';
 import axios, { post } from 'axios'
+import './UploadImage'
 
 export default class UploadImage extends React.Component {
     constructor(props) {
@@ -33,11 +34,15 @@ export default class UploadImage extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.onFormSubmit}>
-                <h1>File Upload</h1>
-                <input type="file" name="myImage" onChange={this.onChange} />
-                <button type="submit">Upload</button>
-            </form>
+            <div className="ui mini form">
+                <form className="ui form" onSubmit={this.onFormSubmit}>
+                    <h4 className="ui dividing header">File upload</h4>
+                    <div className="field">
+                        <input className="inputfile" type="file" name="myImage" onChange={this.onChange} />
+                    </div>
+                    <button className="ui button" type="submit">Upload</button>
+                </form>
+            </div>
         )
     }
 }
