@@ -5,7 +5,7 @@ import React from "react";
 import { Redirect } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-const cookies = new Cookies();
+// const cookies = new Cookies();
 
 class Reg extends React.Component {
   state = {

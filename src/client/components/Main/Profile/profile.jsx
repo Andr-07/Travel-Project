@@ -2,7 +2,7 @@ import React from 'react';
 
 
 import ProfileOneTour from '../ProfileOneTour/ProfileOneTour';
-import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
+
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 

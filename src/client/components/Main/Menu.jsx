@@ -33,22 +33,21 @@ class Menu extends React.Component {
             <a className="item"
               onClick={this.props.destroyCookies}>LogOut</a>
 
-            <Link className="item" to='/profile'>Profile</Link>
+            <Link className="item" to='/profile/0'>Profile</Link>
             <Link className="item" to='/main'>Main</Link>
             <Link className="item" to='/all'>All tours</Link>
 
           </div>
 
-          <a className="item">{this.props.name}</a>
+          {/* <a className="item">{this.props.name}</a>
           <a className="item"
             onClick={this.props.destroyCookies}>LogOut</a>
 
           <Link className="item" to='/profile/0'>Profile</Link>
           <Link className="item" to='/main'>Main</Link>
-          <Link className="item" to='/all'>All tours</Link>
+          <Link className="item" to='/all'>All tours</Link> */}
        
-        </div>
-        {/* <Main /> */}
+        
         <Switch>
         <Route exact path='/profile/:id' component={Profile} />
         <Route exact path='/main' component={Main} />
@@ -56,9 +55,9 @@ class Menu extends React.Component {
         <Route exact path='/all/:id' render={(props) => <OneTour {...props} />}/>
         <Route exact path='/oneprofile' render={(props) => <ProfileOneTour {...props} />}/>
         </Switch>
-
-
         </div>
+
+
 
       );
     // } else return <div>oi ei ei</div>
