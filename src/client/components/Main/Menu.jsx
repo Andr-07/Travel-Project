@@ -1,33 +1,44 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
-import { connect } from 'react-redux';
+
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, FormText, Col, Row } from 'reactstrap';
 import { match } from "minimatch";
-import { Redirect } from 'react-router-dom';
-import { signOut } from '../../../redux/actions';
+
+
 import Main from '../Main/Main';
 import pic from '../../public/pic.png';
 import Profile from '../Main/Profile/profile';
 import OneTour from "../Main/OneTour/OneTour";
 import ProfileOneTour from "../Main/ProfileOneTour/ProfileOneTour";
 import All from '../Main/AllMaps/AllMaps';
+
+const cookies = new Cookies();
 class Menu extends React.Component {
 
-  
-
   render() {
-    // let cok = ookies.get('name')
-    // console.log(this.props.name)
-    // console.log(this.props.cookie.cookies.name)
-   
-    return (
+    // console.log(cookies.get('name'))
+    // console.log(this.props.stateFromApp)
+    // if (this.props.check.isSignedIn === true) {
+      return (
+        <div className='ui container'>
+          <div className="ui stackable menu">
+            <div className="item">
+              {/* <img src = {`${this.props.googlerprofile.Paa}`}/> */}
+              <img src={pic} />
+            </div>
+            <a className="item">{cookies.get('name')}</a>
 
-      <div className='ui container'>
-        <div className="ui stackable menu">
-          <div className="item">
-            <img src={pic} />
+            <a className="item"
+              onClick={this.props.destroyCookies}>LogOut</a>
+
+            <Link className="item" to='/profile'>Profile</Link>
+            <Link className="item" to='/main'>Main</Link>
+            <Link className="item" to='/all'>All tours</Link>
+
           </div>
+
           <a className="item">{this.props.name}</a>
           <a className="item"
             onClick={this.props.destroyCookies}>LogOut</a>
@@ -46,19 +57,30 @@ class Menu extends React.Component {
         <Route exact path='/oneprofile' render={(props) => <ProfileOneTour {...props} />}/>
         </Switch>
 
-      </div>
 
+        </div>
 
-    );
+      );
+    // } else return <div>oi ei ei</div>
+
   }
 }
 
-const mapStateToProps = (state) => {
-  return { isSignedIn: state.auth.isSignedIn }
-};
 
-export default connect(
-  mapStateToProps, { signOut }
-)(Menu);
+export default Menu;
 
+// const mapStateToProps = (state) => {
+//   return {isSignedIn: state.isSignedIn}
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onSignedOutClick: () => dispatch(signOut())
+
+//   }
+// };
+
+// export default connect(
+//   mapStateToProps, mapDispatchToProps
+// )(Menu);
 

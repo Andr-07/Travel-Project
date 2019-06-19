@@ -1,75 +1,106 @@
 import React from 'react';
 
-import Menu from '../Menu';
-import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
 
+import ProfileOneTour from '../ProfileOneTour/ProfileOneTour';
+import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
+
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
+import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
 
 
 class Profile extends React.Component {
   state = {
     title: '',
-    tourName:'',
+    tourName: '',
     allMarks: [],
-    allLines: []
+    allLines: [],
+    center: [],
+    numberOfMaps: null,
+    listNum:[]
   }
 
-  async componentDidMount() {
-    let response = await fetch('/api/profile',
-    {method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      userName: 'Katrin',
-    })
-  })
-    let jsonRes = await response.json()
-    console.log(jsonRes.allMarks)
-    
-    this.setState({
-      allMarks: jsonRes.allMarks,
-      allLines:  jsonRes.allLines,
-      title: jsonRes.tourName
-    })
-  }
+//   createLinks = () => {
+//     let a;
+//     for (let i = 0; i < 3; i++) {
+//       a += <Link className="item" to={`/profile/${i}`}>{i+1}</Link>
+//   }
+//   return a;
+// }
 
+  createLinks = (number) => {
+    this.setState({numberOfMaps:number})
+    console.log('kolvo',this.state.numberOfMaps)
+    let listNum = [];
+    for (let i = 0; i < this.state.numberOfMaps; i++) {
+    listNum.push(i);
+}
+this.setState({listNum})
+console.log(this.state.listNum)
+
+  }
 
   render() {
+
+    console.log('ddededdeddeddedde', cookies.get('name'))
+    console.log(this.props.match.params.id)
+    console.log(this)
     return (
 
-      <YMaps>
-      <div>
-      {/* <Menu/> */}
-      <h1>{this.state.title}</h1>
-      </div>
-      <Map style={{ height: "300px", width: "30%" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }}>
-      {this.state.allMarks.map(el => 
-      <Placemark geometry={el.coors} 
-      properties={{
-        balloonContentHeader: `Пункт№ ${el.i} - ${el.balloonInput}`
-      }}
-      options={{
-        iconLayout: 'default#image',
-        iconImageHref: `https://img.icons8.com/color/48/000000/${el.i}-circle.png`
-    }}
-      modules={
-        ['geoObject.addon.balloon', 'geoObject.addon.hint', 'geoObject.addon.editor']
-    }
-      
-      /> )}
-      <Polyline
-                            geometry={[...this.state.allLines]}
-                            options={{
-                                balloonCloseButton: false,
-                                strokeColor: '#DC143C',
-                                strokeWidth: 3,
-                                strokeOpacity: 0.5,
-                            }}
-                        />
 
-      </Map>
-      </YMaps>
+      <div class="ui grid">
+        <div class="row">
+          <div class="five wide column">
+            <div class="ui card">
+              <div class="image"><img src="https://semantic-ui.com/images/avatar2/large/matthew.png" />
+              </div>
+              <div class="content">
+                <a class="header">{cookies.get('name')}</a>
+                <div class="meta">
+                  <span class="date">Joined in 2019</span>
+                </div>
+                <div class="description">
+                  {cookies.get('name')} is an art director living in New York.
+    </div>
+              </div>
+              <div class="extra content">
+                <a>
+                  <i class="user icon"></i>
+                  22 Friends
+    </a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="eleven wide column">
+
+            <ProfileOneTour number={this.props.match.params.id} createLinks={this.createLinks} />
+
+
+            <div class="ui borderless menu">
+             {this.state.listNum.map(el=> <Link className="item" to={`/profile/${el}`}>{el+1}</Link>
+)}
+              {/* {this.createLinks()} */}
+
+              {/* <Link className="item" to='/profile/0'>1</Link>
+              <Link className="item" to='/profile/1'>2</Link>
+              <a class="item">3</a>
+              <a class="item">4</a>
+              <a class="item">5</a>
+              <a class="item">6</a> */}
+            </div>
+
+
+          </div>
+        </div>
+
+
+      </div>
 
     )
 
