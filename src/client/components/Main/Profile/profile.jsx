@@ -1,12 +1,16 @@
 import React from 'react';
 
+
 import ProfileOneTour from '../ProfileOneTour/ProfileOneTour';
 import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
+
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
+
+import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
 
 
 class Profile extends React.Component {
@@ -41,6 +45,7 @@ console.log(this.state.listNum)
   }
 
   render() {
+
     console.log('ddededdeddeddedde', cookies.get('name'))
     console.log(this.props.match.params.id)
     console.log(this)
@@ -93,6 +98,7 @@ console.log(this.state.listNum)
 
           </div>
         </div>
+
 
       </div>
 
