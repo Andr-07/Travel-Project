@@ -6,6 +6,10 @@ import Form from './Form/Form.jsx'
 import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
 import ReactDOMServer from "react-dom/server";
 
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
 let count = 0;
 let input = 'start';
 export class TestMap extends React.Component {
@@ -14,23 +18,23 @@ export class TestMap extends React.Component {
         super();
 
         this.state = {
-            userName: '',
+            userName:'',
             mapName: '',
             description: '',
             markX: '',
             markY: '',
             placemarks: [
                 {
-                    coors: [52, 53],
-                    i: 0,
-                    balloonInput: input
+                    coors: [],
+                    i: 1,
+                    balloonInput:input
                 }
             ],
             isMark: false,
             isLine: false,
             lines: [],
             back: false,
-            input: ''
+            input: '',
 
         }
         this.handleClick = this.handleClick.bind(this)
@@ -86,7 +90,7 @@ export class TestMap extends React.Component {
                     i: count,
                     balloonInput: input
                 }],
-                isMark: !this.state.isMark,
+                // isMark: !this.state.isMark,
                 // i: [...this.state.i, this.state.i + 1]
             })
         }
@@ -98,13 +102,26 @@ export class TestMap extends React.Component {
 
     /* Кнопка удаление последней линии  */
 
-    backButton = () => {
+    backButtonLine = () => {
         console.log(this.state.lines)
         this.setState({
             lines: this.state.lines.slice(0, this.state.lines.length - 1)
         })
         console.log(this.state.lines)
     }
+
+    backButtonMark = () => {
+        console.log(this.state.placemarks)
+        count--;
+        this.setState({
+            placemarks: this.state.placemarks.slice(0, this.state.placemarks.length - 1)
+        })
+        console.log(this.state.placemarks)
+    }
+
+
+
+        /* Cохранение одной карты  */
 
     saveData = async () => {
         let response = await fetch('/api/oneTour',
@@ -117,7 +134,7 @@ export class TestMap extends React.Component {
                 body: JSON.stringify({
                     allMarks: this.state.placemarks,
                     allLines: this.state.lines,
-                    userName: this.state.userName,
+                    userName: cookies.get('name'),
                     mapName: this.state.mapName,
                     description: this.state.description
                 })
@@ -139,76 +156,90 @@ export class TestMap extends React.Component {
                         this.setState({
                             placemarks: newArr
                         })
+                        
+                    // })
 
-                        // })
+                }}
+                >
+                    <Map style={{ height: "400px", width: "100%", border: "outset 3px #0000FF"}} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
 
-                    }}
-                    >
-                        <Map style={{ height: "400px", width: "100%", border: "solid" }} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
+  
+                        <Button
+                            data={{ content: 'Mark' }}
+                            options={{ maxWidth: 128 }}
+                            defaultState={{ selected: false }}
+                            onClick={this.markButton}
+                        />
+                        <Button
+                            data={{ content: 'Line' }}
+                            options={{ maxWidth: 128 }}
+                            defaultState={{ selected: false }}
+                            onClick={this.polylineButton}
+                        />
+                          <Button
+                            data={{ content: 'Back mark' }}
+                            options={{ maxWidth: 128 }}
+                            defaultState={{ selected: false }}
+                            onClick={this.backButtonMark}
+                        />
 
+                        <Button
+                            data={{ content: 'Back line' }}
+                            options={{ maxWidth: 128 }}
+                            defaultState={{ selected: false }}
+                            onClick={this.backButtonLine}
+                        />
+                      
+                        <Polyline
+                            geometry={[...this.state.lines]}
+                            options={{
+                                balloonCloseButton: false,
+                                strokeColor: '#0000FF',
+                                strokeWidth: 4,
+                                strokeOpacity: 0.5,
+                                strokeStyle: 'dot'
+                            }}
+                        />
+                        <Placemark geometry={[55.684758, 37.738521]}
+                            options={{
+                                iconLayout: 'default#image',
+                                iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png",
+                                iconContent: 'Посмотри'
+                            }}
+                            properties={{
+                                hintContent: "Здесь можно выпить",
+                                balloonContentHeader: "Балун метки",
+                                balloonContentBody: "Содержимое <em>балуна</em> метки",
+                            }}
+                            modules={
+                                ['geoObject.addon.balloon', 'geoObject.addon.hint', 'geoObject.addon.editor']
+                            }
+                        // onClick={this.putInput}
 
-                            <Button
-                                data={{ content: 'Mark' }}
-                                options={{ maxWidth: 128 }}
-                                defaultState={{ selected: false }}
-                                onClick={this.markButton}
-                            />
-                            <Button
-                                data={{ content: 'Line' }}
-                                options={{ maxWidth: 128 }}
-                                defaultState={{ selected: false }}
-                                onClick={this.polylineButton}
-                            />
-                            <Button
-                                data={{ content: 'Back' }}
-                                options={{ maxWidth: 128 }}
-                                defaultState={{ selected: false }}
-                                onClick={this.backButton}
-                            />
-                            <Polyline
-                                geometry={[...this.state.lines]}
-                                options={{
-                                    balloonCloseButton: false,
-                                    strokeColor: '#DC143C',
-                                    strokeWidth: 3,
-                                    strokeOpacity: 0.5,
-                                }}
-                            />
-                            <Placemark geometry={[55.684758, 37.738521]}
-                                options={{
-                                    iconLayout: 'default#image',
-                                    iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png",
-                                    iconContent: 'Посмотри'
-                                }}
-                                properties={{
-                                    hintContent: "Здесь можно выпить",
-                                    balloonContentHeader: "Балун метки",
-                                    balloonContentBody: "Содержимое <em>балуна</em> метки",
-                                }}
-                                modules={
-                                    ['geoObject.addon.balloon', 'geoObject.addon.hint', 'geoObject.addon.editor']
-                                }
-                            // onClick={this.putInput}
+                        />
 
-                            />
+                        {this.state.placemarks.map(el => <Placemark geometry={el.coors}
+                            options={{
+                                iconLayout: 'default#image',
+                                iconImageHref: `https://img.icons8.com/color/48/000000/${el.i}-circle.png`,
+                                draggable: true
+                                
+                            }}
+                            properties={{
+                                balloonContentHeader: `Пункт№ ${el.i} - ${el.balloonInput}`, 
+                                balloonContentBody: `<input data-baloon-input placeholder="Описаниe" value=${el.balloonInput}></input>`,
+                                balloonContentFooter: `<button data-baloon-button data-balloon-id='${el.i}' id='${el.i}'>Сохранить</button>`
 
-                            {this.state.placemarks.map(el => <Placemark geometry={el.coors}
-                                options={{
-                                    iconLayout: 'default#image',
-                                    iconImageHref: `https://img.icons8.com/color/48/000000/${el.i}-circle.png`
-                                }}
-                                properties={{
-                                    balloonContentHeader: `Пункт№ ${el.i} - ${el.balloonInput}`,
-                                    balloonContentBody: `<input data-baloon-input placeholder="Описаниe" value=${el.balloonInput}></input>`,
-                                    balloonContentFooter: `<button data-baloon-button data-balloon-id='${el.i}' id='${el.i}'>Сохранить</button>`
+                            }}
+                        />)}
+                    </Map>
+                    <Form handleInputChange={this.handleInputChange} />
+                    {/* <button onClick={this.saveData}>Save it</button> */}
+                    
 
-                                }}
-                            />)}
-                        </Map>
-                        <Form handleInputChange={this.handleInputChange} />
-                        {/* <button onClick={this.saveData}>Save it</button> */}
-                    </form>
-                </YMaps>
+                </form>
+
+            </YMaps>
         );
     }
 }

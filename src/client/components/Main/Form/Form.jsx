@@ -1,5 +1,9 @@
 import React from 'react';
 
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
 class Form extends React.Component {
     state = {
         userName: '',
@@ -41,7 +45,7 @@ class Form extends React.Component {
                     <label>CREATE YOUR MAP</label>
                     <div className="two fields">
                         <div className="field">
-                            <input type="text" placeholder="YOUR NAME" name='userName' value={this.state.userName} />
+                            <input type="text" placeholder="YOUR NAME" name='userName' value={cookies.get('name')} />
                         </div>
                         <div className="field">
                             <input type="text" placeholder="MAP NAME" name='mapName' value={this.state.mapName} />

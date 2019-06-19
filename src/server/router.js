@@ -48,16 +48,22 @@ router.post('/oneTour', async (req, res, next) => {
 });
 
 router.post('/profile', async (req, res, next) => {
-  let check = await Tour.findOne({ userName: req.body.userName })
-  console.log(">>>>>>>>>>>>", check)
+ let check = await Tour.find({userName: req.body.userName})
+  console.log("lengthlengthlength", check.length)
   res.json(check)
 });
 
 router.post('/all', async (req, res, next) => {
   let check = await Tour.find({})
-  console.log(">>>>>>>>>>>>", check)
-  res.json(check)
-});
+  //  console.log(">>>>>>>>>>>>", check)
+   res.json(check)
+ });
+
+ router.post('/idTour', async (req, res, next) => {
+  let check = await Tour.findOne({_id:req.body.id})
+   console.log("+++++", check)
+   res.json(check)
+ });
 
 
 router.post('/reg', async (req, res, next) => {
@@ -84,11 +90,11 @@ router.post('/login', async (req, res, next) => {
   }
   else
     console.log('Неуспешная авторизация');
-  console.log(req.body.email);
-  console.log('EMAIL IZ BD', allUsers.email);
-  console.log('VSE USERI', allUsers);
-  return res.json('Not OK')
-});
+    // console.log(req.body.email);
+    // console.log('EMAIL IZ BD',allUsers.email);
+    // console.log('VSE USERI',allUsers);
+    return res.json('Not OK')
+  });
 // });
 
 module.exports = router;

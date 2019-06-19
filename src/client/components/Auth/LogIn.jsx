@@ -22,20 +22,20 @@ class LogIn extends React.Component {
                     email: this.state.email
                 })
             })
-        console.log(response)
+        // console.log(response)
         let whatIGet = await response.json()
-        console.log(whatIGet)
+        // console.log(whatIGet)
         if (whatIGet.result === 'OK') {
             this.props.setLogin(whatIGet.user)
             this.setState({ redirect: true })
         }
     }
 
-    renderRedirect = () => {
-        if (this.state.redirect) {
-            return <Redirect to='/main' />
-        }
-    }
+    // renderRedirect = () => {
+    //     if (this.state.redirect) {
+    //         return <Redirect to='/main' />
+    //     }
+    // }
     render() {
         return (
 
@@ -51,7 +51,7 @@ class LogIn extends React.Component {
                         <input type="text" name="password" placeholder="Password" value={this.state.password}
                             onChange={(event) => this.setState({ password: event.target.value })} />
                     </div>
-                    {this.renderRedirect()}
+                    {/* {this.renderRedirect()} */}
                     <button className="ui button" type="submit" onClick={this.checkingRegistration}>LogIn</button>
                 </div>
             </div>

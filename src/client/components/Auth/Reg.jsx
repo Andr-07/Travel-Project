@@ -1,6 +1,11 @@
 import React from "react";
+
+
+
 import { Redirect } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+// const cookies = new Cookies();
 
 class Reg extends React.Component {
   state = {
@@ -27,6 +32,7 @@ class Reg extends React.Component {
       let whatIGet = await response.json()
       if (whatIGet === 'OK') {
           this.setState({ redirect: true })
+         
       }
   }
 
