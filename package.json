@@ -41,9 +41,9 @@
     "redis": "^2.8.0",
     "redison": "0.0.9",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
     "slick-carousel": "^1.8.1",
-    "universal-cookie": "^4.0.0",
-    "redux-devtools-extension": "^2.13.8"
+    "universal-cookie": "^4.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -85,13 +85,16 @@ class Profile extends React.Component {
 
 
             <div class="ui borderless menu">
-              {this.state.listNum.map(el => <Link className="item" to={`/profile/${el}`}>{el + 1}</Link>
-              )}
+             {this.state.listNum.map(el=> <Link className="item" to={`/profile/${el}`}>{el+1}</Link>
+)}
+
+            </div>
+
 
             </div>
           </div>
         </div>
-      </div>
+      
 
     )
   }
