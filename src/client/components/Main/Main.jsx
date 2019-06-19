@@ -9,18 +9,18 @@ class Main extends React.Component {
   render() {
     return (
 
+
       <div className="ui grid">
-        <div className="ui row">
-          <div className='eleven wide column'>
-            <MapCreator />
-          </div>
-          <div className='four wide column'>
-            <MapList />
-          </div>
+
+        <div class="four wide column">
+          <MapList />
         </div>
+        
+        <div class="twelve wide column">
+          <MapCreator />
+        </div>
+
       </div>
-
-
     );
   }
 }

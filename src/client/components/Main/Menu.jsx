@@ -2,13 +2,10 @@ import React from 'react';
 import Cookies from 'universal-cookie';
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input, FormText, Col, Row } from 'reactstrap';
-import { match } from "minimatch";
-
 
 import Main from '../Main/Main';
-import pic from '../../public/pic.png';
+import pic1 from '../../public/trsvelforest.jpg';
+// import pic2 from '../public/mapBiege.jpg';
 import Profile from '../Main/Profile/profile';
 import OneTour from "../Main/OneTour/OneTour";
 import ProfileOneTour from "../Main/ProfileOneTour/ProfileOneTour";
@@ -18,49 +15,36 @@ const cookies = new Cookies();
 class Menu extends React.Component {
 
   render() {
-    // console.log(cookies.get('name'))
-    // console.log(this.props.stateFromApp)
-    // if (this.props.check.isSignedIn === true) {
-      return (
-        <div className='ui container'>
-          <div className="ui stackable menu">
-            <div className="item">
-              {/* <img src = {`${this.props.googlerprofile.Paa}`}/> */}
-              <img src={pic} />
-            </div>
-            <a className="item">{cookies.get('name')}</a>
+    return (<div className='ui container'>
 
-            <a className="item"
-              onClick={this.props.destroyCookies}>LogOut</a>
 
-            <Link className="item" to='/profile/0'>Profile</Link>
-            <Link className="item" to='/main'>Main</Link>
-            <Link className="item" to='/all'>All tours</Link>
+      <img class="ui segment right floated circular image" style={{ height: '200px' }} src={pic1} />
 
-          </div>
+      <div class="ui pointing menu">
 
-          {/* <a className="item">{this.props.name}</a>
-          <a className="item"
-            onClick={this.props.destroyCookies}>LogOut</a>
+        <Link className="item" to='/profile/0'>Profile</Link>
+        <Link className="item" to='/main'>Main</Link>
+        <Link className="item" to='/all'>All tours</Link>
+        <div class="right menu">
 
-          <Link className="item" to='/profile/0'>Profile</Link>
-          <Link className="item" to='/main'>Main</Link>
-          <Link className="item" to='/all'>All tours</Link> */}
-       
-        
-        <Switch>
+        <a className="item">
+          Welcome <br></br> {cookies.get('name')}</a>
+        <a className="item"
+          onClick={this.props.destroyCookies}>LogOut</a>
+
+        </div>
+
+      </div>
+      <Switch>
         <Route exact path='/profile/:id' component={Profile} />
         <Route exact path='/main' component={Main} />
         <Route exact path='/all' component={All} />
-        <Route exact path='/all/:id' render={(props) => <OneTour {...props} />}/>
-        <Route exact path='/oneprofile' render={(props) => <ProfileOneTour {...props} />}/>
-        </Switch>
-        </div>
+        <Route exact path='/all/:id' render={(props) => <OneTour {...props} />} />
+        <Route exact path='/oneprofile' render={(props) => <ProfileOneTour {...props} />} />
+      </Switch>
+    </div>
 
-
-
-      );
-    // } else return <div>oi ei ei</div>
+    );
 
   }
 }
@@ -68,18 +52,24 @@ class Menu extends React.Component {
 
 export default Menu;
 
-// const mapStateToProps = (state) => {
-//   return {isSignedIn: state.isSignedIn}
-// };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onSignedOutClick: () => dispatch(signOut())
 
-//   }
-// };
+{/* <div className="ui stackable menu">
+    
+    <a className="item">{cookies.get('name')}</a>
+    
+        <a className="item"
+        onClick={this.props.destroyCookies}>LogOut</a>
 
-// export default connect(
-//   mapStateToProps, mapDispatchToProps
-// )(Menu);
+        <Link className="item" to='/profile/0'>Profile</Link>
+        <Link className="item" to='/main'>Main</Link>
+        <Link className="item" to='/all'>All tours</Link>
+        
+        </div>
+        <div class="ui segment">
+        <div className="ui small circular right floated image">
+        <img src={pic1} />
+        </div>
+      </div> */}
 
+      // <div className='ui container'>
