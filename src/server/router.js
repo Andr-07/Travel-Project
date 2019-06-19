@@ -25,8 +25,8 @@ router.post('/oneTour', async (req, res, next) => {
 });
 
 router.post('/profile', async (req, res, next) => {
- let check = await Tour.findOne({userName: req.body.userName})
-  // console.log(">>>>>>>>>>>>", check)
+ let check = await Tour.find({userName: req.body.userName})
+  console.log("lengthlengthlength", check.length)
   res.json(check)
 });
 
