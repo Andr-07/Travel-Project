@@ -65,14 +65,12 @@ router.post('/all', async (req, res, next) => {
    res.json(check)
  });
 
-
 router.post('/reg', async (req, res, next) => {
   let user = new User({
     userName: req.body.userName,
     password: req.body.password,
     email: req.body.email
   })
-
 
   await user.save();
   console.log(">>>>>>>>>>>>", user)

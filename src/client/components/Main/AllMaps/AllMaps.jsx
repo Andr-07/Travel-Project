@@ -31,56 +31,56 @@ class AllMaps extends React.Component {
     return (
       <div>
         <h1> Все туры:</h1>
-          <div class="ui grid">
-        <div class="row">
-        {this.state.arr.map(el =>
-          <div class="five wide column">
+        <div class="ui grid">
+          <div class="row">
+            {this.state.arr.map(el =>
+              <div class="five wide column">
 
-          <div className="ui raised link card">
-            <div className="content">
-              <div className="header">
-              {el.tourName}</div>
-              <div class="meta">
-                <span className="category">
-                {el.description}
-                </span>
+                <div className="ui raised link card">
+                  <div className="content">
+                    <div className="header">
+                      {el.tourName}</div>
+                    <div class="meta">
+                      <span className="category">
+                        {el.description}
+                      </span>
+                    </div>
+                    <div className="description">
+                      <Link to={`/all/${el._id}`}>Подробнее</Link>
+                    </div>
+                  </div>
+                  <div className="extra content">
+                    <div className="right floated author">
+                      <img className="ui avatar image" src={"https://mir-avatarok.3dn.ru/_si/0/03342719.jpg"} /> Author: {el.userName}
+
+
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="description">
-                <Link to={`/all/${el._id}`}>Подробнее</Link>
-              </div>
-            </div>
-            <div className="extra content">
-              <div className="right floated author">
-                <img className="ui avatar image" src={"https://mir-avatarok.3dn.ru/_si/0/03342719.jpg"}/> Author: {el.userName}
 
-
-              </div>
-            </div>
+            )}
           </div>
-          </div>
-          
-          )}
-          </div>
-          </div>
-          </div>
+        </div>
+      </div>
 
 
-        /* <h1> Все туры:</h1>
-        {this.state.arr.map(el => <ul>
-          <h3>{el.tourName} - {el.description}
-            <div>
-            </div>
-          </h3>
-          Author: {el.userName}
-          <h5> <Link to={`/all/${el._id}`}>Подробнее</Link></h5>
+      /* <h1> Все туры:</h1>
+      {this.state.arr.map(el => <ul>
+        <h3>{el.tourName} - {el.description}
+          <div>
+          </div>
+        </h3>
+        Author: {el.userName}
+        <h5> <Link to={`/all/${el._id}`}>Подробнее</Link></h5>
 
-        </ul>)}
-        
-      </div> */
+      </ul>)}
+      
+    </div> */
 
-        );
-      }
-    }
-    
-    export default AllMaps;
-    
+    );
+  }
+}
+
+export default AllMaps;
+

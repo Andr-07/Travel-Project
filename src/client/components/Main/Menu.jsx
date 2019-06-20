@@ -7,6 +7,7 @@ import { Button, Form, FormGroup, Label, Input, FormText, Col, Row } from 'react
 import { match } from "minimatch";
 
 
+import Photos from './Photos/Photos'
 import Main from '../Main/Main';
 import pic from '../../public/pic.png';
 import Profile from '../Main/Profile/profile';
@@ -21,47 +22,48 @@ class Menu extends React.Component {
     // console.log(cookies.get('name'))
     // console.log(this.props.stateFromApp)
     // if (this.props.check.isSignedIn === true) {
-      return (
-        <div className='ui container'>
-          <div className="ui stackable menu">
-            <div className="item">
-              {/* <img src = {`${this.props.googlerprofile.Paa}`}/> */}
-              <img src={pic} />
-            </div>
-            <a className="item">{cookies.get('name')}</a>
-
-            <a className="item"
-              onClick={this.props.destroyCookies}>LogOut</a>
-
-            <Link className="item" to='/profile/0'>Profile</Link>
-            <Link className="item" to='/main'>Main</Link>
-            <Link className="item" to='/all'>All tours</Link>
-
+    return (
+      <div className='ui container'>
+        <div className="ui stackable menu">
+          <div className="item">
+            {/* <img src = {`${this.props.googlerprofile.Paa}`}/> */}
+            <img src={pic} />
           </div>
+          <a className="item">{cookies.get('name')}</a>
 
-          {/* <a className="item">{this.props.name}</a>
+          <a className="item"
+            onClick={this.props.destroyCookies}>LogOut</a>
+
+          <Link className="item" to='/profile/0'>Profile</Link>
+          <Link className="item" to='/main'>Main</Link>
+          <Link className="item" to='/all'>All tours</Link>
+          <Link className="item" to='/photos'>Photos</Link>
+
+        </div>
+
+        {/* <a className="item">{this.props.name}</a>
           <a className="item"
             onClick={this.props.destroyCookies}>LogOut</a>
 
           <Link className="item" to='/profile/0'>Profile</Link>
           <Link className="item" to='/main'>Main</Link>
           <Link className="item" to='/all'>All tours</Link> */}
-       
-        
+
+
         <Switch>
-        <Route exact path='/profile/:id' component={Profile} />
-        <Route exact path='/main' component={Main} />
-        <Route exact path='/all' component={All} />
-        <Route exact path='/all/:id' render={(props) => <OneTour {...props} />}/>
-        <Route exact path='/oneprofile' render={(props) => <ProfileOneTour {...props} />}/>
+          <Route exact path='/profile/:id' component={Profile} />
+          <Route exact path='/main' component={Main} />
+          <Route exact path='/all' component={All} />
+          <Route exact path='/photos' component={Photos} />
+          <Route exact path='/all/:id' render={(props) => <OneTour {...props} />} />
+          <Route exact path='/oneprofile' render={(props) => <ProfileOneTour {...props} />} />
         </Switch>
-        </div>
+      </div>
 
 
 
-      );
+    );
     // } else return <div>oi ei ei</div>
-
   }
 }
 

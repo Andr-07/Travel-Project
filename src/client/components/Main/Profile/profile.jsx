@@ -1,7 +1,4 @@
 import React from 'react';
-
-import CenterMode from '../CenterMode/CenterMode'
-import UploadImage from '../Upload/UploadImage'
 import ProfileOneTour from '../ProfileOneTour/ProfileOneTour';
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
@@ -99,9 +96,6 @@ class Profile extends React.Component {
 
           </div>
         </div>
-
-        <CenterMode />
-        <UploadImage />
       </div>
 
     )
