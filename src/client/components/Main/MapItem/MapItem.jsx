@@ -1,5 +1,6 @@
 import React from 'react';
 import picmap from '../../../public/daniel.jpg';
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 
 class MapItem extends React.Component {
 
@@ -32,9 +33,10 @@ class MapItem extends React.Component {
             <div>
             <div className="item">
                 <img className="ui avatar image" src={picmap} />
-                    <a className="header">{el.userName }</a>
+                    <span className="header">{el.userName }</span>
                     <div className="description">
-                        {el.tourName}
+                    <Link to={`/all/${el._id}`}>{el.tourName}</Link>
+
                     </div>
                         <i className="heart outline icon red "></i>
                             10 Likes

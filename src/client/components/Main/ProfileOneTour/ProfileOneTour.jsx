@@ -3,7 +3,7 @@ import React from 'react';
 
 import Cookies from 'universal-cookie';
 import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 
 
 const cookies = new Cookies();
@@ -17,24 +17,39 @@ class ProfileOneTour extends React.Component {
     center: [],
     numberOfMap: '',
     resJson: null,
+    redirect: false
+
   }
 
   deleteTour = async (id) => {
     console.log(id)
     let response = await fetch('/api/deleteMap',
     {
-        method: 'POST',
+        method: 'DELETE',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           id: id,
+          userName: cookies.get('name'),
         })
       })
-      // let jsonRes = await response.json()
-      alert('Вы успешно удалили маршрут, обновите страницу..')
-      
+      let jsonRes = await response.json()
+      this.setState({resJson: jsonRes});
+
+      this.props.createLinks(this.state.resJson.length)
+
+      alert('Вы успешно удалили маршрут')
+      this.setState({
+        redirect: true
+      })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/profile/0' />
+    }
   }
 
   async componentDidMount() {
@@ -70,6 +85,8 @@ class ProfileOneTour extends React.Component {
 
     return (
       <div>
+                {this.renderRedirect()}
+
       {tour ? (
 <div>
       <YMaps>
@@ -112,6 +129,7 @@ class ProfileOneTour extends React.Component {
 
         </Map>
       </YMaps>
+      <h4>Описание: {tour.description}</h4>
       <hr></hr>
       <button class="negative ui button" onClick={()=>this.deleteTour(tour._id)}>Delete</button> 
       </div>) : (<h2>Пока маршрутов нет, но вы можете создать их <Link to={`/main`}>здесь</Link></h2>)}

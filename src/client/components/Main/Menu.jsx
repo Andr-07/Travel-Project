@@ -23,14 +23,16 @@ class Menu extends React.Component {
 
       <div class="ui pointing menu">
 
+
         <Link className="item" to='/profile/0'>Profile</Link>
         <Link className="item" to='/main'>Main</Link>
         <Link className="item" to='/all'>All tours</Link>
         <Link className="item" to='/chat'>Forum</Link>
+
         <div class="right menu">
 
         <a className="item">
-          Welcome <br></br> {cookies.get('name')}</a>
+          Приветствую <br></br> {cookies.get('name')}</a>
         <a className="item"
           onClick={this.props.destroyCookies}>LogOut</a>
 

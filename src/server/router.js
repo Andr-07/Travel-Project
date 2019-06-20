@@ -24,29 +24,56 @@ router.post('/oneTour', async (req, res, next) => {
   })
 
   await saveData.save();
-  console.log(">>>>>>>>>>>>", saveData)
+  // console.log(">>>>>>>>>>>>", saveData)
   res.json()
 });
 
 router.post('/profile', async (req, res, next) => {
-  let check = await Tour.find({ userName: req.body.userName })
-  console.log("lengthlengthlength", check.length)
+
+ let check = await Tour.find({userName: req.body.userName})
+  // console.log("lengthlengthlength", check.length)
+
   res.json(check)
 });
 
-router.post('/deleteMap', async (req, res, next) => {
+router.delete('/deleteMap', async (req, res, next) => {
   let check = await Tour.findByIdAndRemove(req.body.id)
-  console.log("deleteteeid", check)
-  res.json(check)
-});
 
-router.post('/comment', async (req, res, next) => {
-  let saveComment = new User({
+  let newOne = await Tour.find({userName: req.body.userName})
+  //  console.log("deleteteeid", check)
+   res.json(newOne)
+ });
+
+ router.delete('/delcomment', async (req, res, next) => {
+  let check = await Comment.findByIdAndRemove(req.body.idComment)
+  let newOne = await Comment.find({idPost: req.body.idPost})
+  // //  console.log("deleteteeid", check)
+   res.json(newOne)
+ });
+
+ router.post('/savecomment', async (req, res, next) => {
+  let saveComment = new Comment({
+
     userName: req.body.userName,
-    password: req.body.password,
-    email: req.body.email
+    date: req.body.date,
+    comment: req.body.comment,
+    idPost: req.body.idPost
   })
-});
+
+  await saveComment.save();
+  res.json({})
+  // console.log(">>>>>>>>>>>>comment", saveComment)
+ });
+
+
+ router.post('/getcomments', async (req, res, next) => {
+  let check = await Comment.find({idPost: req.body.idPost})
+  // console.log(">>>>>>>>>>>>comment", check)
+  // console.log(">>>>>>>>>>>>comment", req.body.idPost)
+  res.json(check)
+
+ });
+
 
 router.post('/all', async (req, res, next) => {
   let check = await Tour.find({})
@@ -61,11 +88,13 @@ router.post('/top', async (req, res, next) => {
 });
 
 
-router.post('/idTour', async (req, res, next) => {
-  let check = await Tour.findOne({ _id: req.body.id })
-  console.log("+++++", check)
-  res.json(check)
-});
+
+ router.post('/idTour', async (req, res, next) => {
+  let check = await Tour.findOne({_id:req.body.id})
+  //  console.log("+++++", check)
+   res.json(check)
+ });
+
 
 
 router.post('/reg', async (req, res, next) => {
@@ -77,7 +106,7 @@ router.post('/reg', async (req, res, next) => {
 
 
   await user.save();
-  console.log(">>>>>>>>>>>>", user)
+  // console.log(">>>>>>>>>>>>", user)
   res.json('OK')
 });
 
