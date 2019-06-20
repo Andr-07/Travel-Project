@@ -1,5 +1,5 @@
 import React from 'react';
-import picmap from '../../../public/map.png';
+import picmap from '../../../public/daniel.jpg';
 
 class MapItem extends React.Component {
 
@@ -29,6 +29,7 @@ class MapItem extends React.Component {
         return (
             <div>
             {this.state.arr.map(el =>
+            <div>
             <div className="item">
                 <img className="ui avatar image" src={picmap} />
                     <a className="header">{el.userName }</a>
@@ -37,6 +38,8 @@ class MapItem extends React.Component {
                     </div>
                         <i className="heart outline icon red "></i>
                             10 Likes
+                            <hr></hr>
+                </div>
                 </div>)}
             </div>
         );
