@@ -10,53 +10,89 @@ const cookies = new Cookies();
 
 class Comment extends React.Component {
     state = {
-        userName:'',
-        date:'',
-        comment:''
+        fullArr: [],
+        userName: '',
+        date: '',
+        comment: ''
     }
 
-    async componentDidMount() {
-    
-        let response = await fetch('/api/comment',
-        {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              userName: cookies.get('name'),
-              date: Date(),
-              comment: "Amazing tour"
+    componentDidMount() {
+       this.showComments();
+
+    }
+
+    deleteComment = async (id) => {
+        let response = await fetch('/api/delcomment',
+            {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    idComment: id,
+                    idPost: this.props.idPost
+
+                })
             })
-          })
-          let jsonRes = await response.json()
-      }
-    
+        let jsonRes = await response.json()
+        this.setState({
+            fullArr: jsonRes
+        })
+    }
+
+    showComments = async () => {
+
+        let response = await fetch('/api/getcomments',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    idPost: this.props.idPost
+                })
+            })
+        let jsonRes = await response.json()
+        this.setState({
+            fullArr: jsonRes
+        })
+        setTimeout(this.showComments, 3000);
+    }
+
 
     render() {
+
         return (
             <div>
-                <div class="comment">
-                    <a class="avatar">
-                        <img src={"https://mir-avatarok.3dn.ru/_si/0/03342719.jpg"} />
-                    </a>
-                    <div class="content">
-                        <a class="author">Matt</a>
+                {this.state.fullArr.map(el =>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src={"https://mir-avatarok.3dn.ru/_si/0/03342719.jpg"} />
+                        </a>
+
+                        <a class="author">{el.userName}  </a> 
+                        {el.userName == cookies.get("name") ? 
+                        <i onClick={()=>this.deleteComment(el._id)} class="x red icon"></i>
+                        : <i></i>}
                         <div class="metadata">
-                            <span class="date">Today at 5:42PM</span>
+                            <span class="date">{el.date}</span>
                         </div>
                         <div class="text">
-                            How artistic!
-      </div>
+                            {el.comment}
+                        </div>
                         <div class="actions">
                             <a class="reply">Reply</a>
                         </div>
-                    </div>
-                </div>
 
+                    </div>
+                )}
 
             </div>
         )
     }
+}
+
+export default Comment;
 

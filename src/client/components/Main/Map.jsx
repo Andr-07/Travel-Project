@@ -143,6 +143,11 @@ export class TestMap extends React.Component {
 
                 })
             })
+            this.setState({
+                placemarks:[],
+                lines:[]
+            })
+            count = 0;
 
     }
 
@@ -209,7 +214,7 @@ export class TestMap extends React.Component {
                                 strokeStyle: 'dot'
                             }}
                         />
-                        <Placemark geometry={[55.684758, 37.738521]}
+                        {/* <Placemark geometry={[55.684758, 37.738521]}
                             options={{
                                 iconLayout: 'default#image',
                                 iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png",
@@ -225,7 +230,7 @@ export class TestMap extends React.Component {
                             }
                         // onClick={this.putInput}
 
-                        />
+                        /> */}
 
                         {this.state.placemarks.map(el => <Placemark geometry={el.coors}
                             options={{
