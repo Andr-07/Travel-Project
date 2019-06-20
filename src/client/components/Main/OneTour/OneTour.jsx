@@ -67,13 +67,13 @@ class OneTour extends React.Component {
     </div>
     </div>
   </div> */}
+  <div class="ui grid">
+        <div class="row">
+          <div class="eleven wide column">
                <div class="ui blue segment">
                <h1>{this.state.oneTour.tourName}</h1>
 
   </div>
-  <div class="ui grid">
-        <div class="row">
-          <div class="eleven wide column">
   <div class="ui center aligned segment">
 
             <YMaps>
