@@ -32,7 +32,7 @@ class MapItem extends React.Component {
             {this.state.arr.map(el =>
             <div>
             <div className="item">
-                <img className="ui avatar image" src={picmap} />
+                <img className="ui avatar image" src="https://mir-avatarok.3dn.ru/_si/0/03342719.jpg" />
                     <span className="header">{el.userName }</span>
                     <div className="description">
                     <Link to={`/all/${el._id}`}>{el.tourName}</Link>

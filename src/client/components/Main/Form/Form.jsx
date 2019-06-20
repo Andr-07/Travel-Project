@@ -42,7 +42,7 @@ class Form extends React.Component {
                 <div className="field"
                
                 >
-                    <label>CREATE YOUR MAP</label>
+                    <label>СОЗДАЙ СВОЙ МАРШРУТ</label>
                     <div className="two fields">
                         <div className="field">
                             <input type="text" placeholder="YOUR NAME" name='userName' value={cookies.get('name')} />
@@ -54,13 +54,13 @@ class Form extends React.Component {
                 </div>
                 <div className="field"  >
 
-                    <label>Description</label>
+                    <label>ОПИСАНИЕ</label>
                     <input type="text" placeholder="Расскажи свою историю" name='description' value={this.state.description} />
                 </div>
 
                 <button className="ui red button" type="submit"
 
-                >Submit</button>
+                >Поделиться</button>
 
             </form>
         );

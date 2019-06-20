@@ -166,7 +166,7 @@ class OneTour extends React.Component {
                     onClick={this.saveComment}
                     class="ui blue labeled submit icon button"
                   >
-                    <i class="icon edit" /> Add Reply
+                    <i class="icon edit" /> Оставить комментарий
                   </div>
                 </form>
               </div>

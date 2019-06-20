@@ -179,26 +179,27 @@ export class TestMap extends React.Component {
 
   
                         <Button
-                            data={{ content: 'Mark' }}
+                            data={{ content: 'Метка'
+                        }}
                             options={{ maxWidth: 128 }}
                             defaultState={{ selected: false }}
                             onClick={this.markButton}
                         />
                         <Button
-                            data={{ content: 'Line' }}
+                            data={{ content: 'Линия' }}
                             options={{ maxWidth: 128 }}
                             defaultState={{ selected: false }}
                             onClick={this.polylineButton}
                         />
                           <Button
-                            data={{ content: 'Back mark' }}
+                            data={{ content: '<i class="arrow left icon"></i> Метка' }}
                             options={{ maxWidth: 128 }}
                             defaultState={{ selected: false }}
                             onClick={this.backButtonMark}
                         />
 
                         <Button
-                            data={{ content: 'Back line' }}
+                            data={{ content: '<i class="arrow left icon"></i> Линия' }}
                             options={{ maxWidth: 128 }}
                             defaultState={{ selected: false }}
                             onClick={this.backButtonLine}
@@ -248,7 +249,6 @@ export class TestMap extends React.Component {
                         />)}
                     </Map>
                     <Form handleInputChange={this.handleInputChange} />
-                    {/* <button onClick={this.saveData}>Save it</button> */}
                     
 
                 </form>
