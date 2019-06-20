@@ -8,6 +8,7 @@ import pic1 from '../../public/trsvelforest.jpg';
 // import pic2 from '../public/mapBiege.jpg';
 import Profile from '../Main/Profile/profile';
 import OneTour from "../Main/OneTour/OneTour";
+import ChatPage from "../Main/Chat/chatPage";
 import ProfileOneTour from "../Main/ProfileOneTour/ProfileOneTour";
 import All from '../Main/AllMaps/AllMaps';
 
@@ -25,6 +26,7 @@ class Menu extends React.Component {
         <Link className="item" to='/profile/0'>Profile</Link>
         <Link className="item" to='/main'>Main</Link>
         <Link className="item" to='/all'>All tours</Link>
+        <Link className="item" to='/chat'>Forum</Link>
         <div class="right menu">
 
         <a className="item">
@@ -37,6 +39,7 @@ class Menu extends React.Component {
       </div>
       <Switch>
         <Route exact path='/profile/:id' component={Profile} />
+        <Route exact path='/chat' component={ChatPage} />
         <Route exact path='/main' component={Main} />
         <Route exact path='/all' component={All} />
         <Route exact path='/all/:id' render={(props) => <OneTour {...props} />} />

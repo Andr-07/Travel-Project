@@ -36,7 +36,7 @@ class App extends React.Component {
     }
     await this.setState({ isSignedInGoogle: this.auth.isSignedIn.get() });
  
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   async componentDidMount() {

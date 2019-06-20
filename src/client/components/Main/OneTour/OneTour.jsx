@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
-
+import {  Link } from "react-router-dom";
 
 class OneTour extends React.Component {
 
@@ -70,8 +70,10 @@ class OneTour extends React.Component {
           <div class="row">
             <div class="eleven wide column">
               <div class="ui blue segment">
-                <h1>{this.state.oneTour.tourName}</h1>
 
+              
+               {/* <Link className="ui right floated button" to={`/chat/${this.state.oneTour.userName}`}><i className="envelope icon"></i>Send message</Link> */}
+                <h1>{this.state.oneTour.tourName}</h1>
               </div>
               <div class="ui center aligned segment">
 
