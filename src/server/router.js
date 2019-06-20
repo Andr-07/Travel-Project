@@ -1,6 +1,9 @@
 const express = require('express');
+
 const Tour = require('./models/tour');
 const User = require('./models/user');
+const Comment = require('./models/comment');
+
 const router = express.Router();
 
 router.get('/test', (req, res) => {
@@ -34,6 +37,14 @@ router.post('/deleteMap', async (req, res, next) => {
   let check = await Tour.findByIdAndRemove(req.body.id)
    console.log("deleteteeid", check)
    res.json(check)
+ });
+
+ router.post('/comment', async (req, res, next) => {
+  let saveComment = new User({
+    userName: req.body.userName,
+    password: req.body.password,
+    email: req.body.email
+  })
  });
 
 router.post('/all', async (req, res, next) => {

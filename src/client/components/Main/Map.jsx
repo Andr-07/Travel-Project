@@ -150,6 +150,7 @@ export class TestMap extends React.Component {
 
     render() {
         return (
+            <div class="ui center aligned segment">
 
             <YMaps>
                 <form onSubmit={ (e) => {
@@ -169,7 +170,7 @@ export class TestMap extends React.Component {
 
                 }}
                 >
-                    <Map style={{ height: "400px", width: "100%", border: "outset 3px #3f7ca8"}} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
+                    <Map style={{ height: "400px", width: "100%", border: "outset 1px #3f7ca8"}} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
 
   
                         <Button
@@ -248,6 +249,7 @@ export class TestMap extends React.Component {
                 </form>
 
             </YMaps>
+            </div>
         );
     }
 }
