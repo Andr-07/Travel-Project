@@ -1,3 +1,4 @@
+
 import React from "react";
 
 import {
@@ -13,6 +14,9 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 let moment = require("moment");
+
+import {  Link } from "react-router-dom";
+
 
 class OneTour extends React.Component {
   state = {
@@ -87,6 +91,7 @@ class OneTour extends React.Component {
           <div class="row">
             <div class="eleven wide column">
               <div class="ui blue segment">
+
                 <h1>{this.state.oneTour.tourName}</h1>
               </div>
               <div class="ui center aligned segment">
