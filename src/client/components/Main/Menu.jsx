@@ -2,16 +2,14 @@ import React from 'react';
 import Cookies from 'universal-cookie';
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input, FormText, Col, Row } from 'reactstrap';
-import { match } from "minimatch";
-
 
 import Photos from './Photos/Photos'
 import Main from '../Main/Main';
-import pic from '../../public/pic.png';
+import pic1 from '../../public/trsvelforest.jpg';
+// import pic2 from '../public/mapBiege.jpg';
 import Profile from '../Main/Profile/profile';
 import OneTour from "../Main/OneTour/OneTour";
+import ChatPage from "../Main/Chat/chatPage";
 import ProfileOneTour from "../Main/ProfileOneTour/ProfileOneTour";
 import All from '../Main/AllMaps/AllMaps';
 
@@ -19,69 +17,67 @@ const cookies = new Cookies();
 class Menu extends React.Component {
 
   render() {
-    // console.log(cookies.get('name'))
-    // console.log(this.props.stateFromApp)
-    // if (this.props.check.isSignedIn === true) {
-    return (
-      <div className='ui container'>
-        <div className="ui stackable menu">
-          <div className="item">
-            {/* <img src = {`${this.props.googlerprofile.Paa}`}/> */}
-            <img src={pic} />
-          </div>
-          <a className="item">{cookies.get('name')}</a>
+    return (<div className='ui container'>
 
-          <a className="item"
-            onClick={this.props.destroyCookies}>LogOut</a>
 
-          <Link className="item" to='/profile/0'>Profile</Link>
-          <Link className="item" to='/main'>Main</Link>
-          <Link className="item" to='/all'>All tours</Link>
-          <Link className="item" to='/photos'>Photos</Link>
+      <img class="ui segment right floated circular image" style={{ height: '200px' }} src={pic1} />
+
+      <div class="ui pointing menu">
+
+
+        <Link className="item" to='/profile/0'>Личный кабинет</Link>
+        <Link className="item" to='/main'>Главная</Link>
+        <Link className="item" to='/all'>Все маршруты</Link>
+        <Link className="item" to='/chat'>Форум</Link>
+        <Link className="item" to='/photos'>Фотографии</Link>
+
+        <div class="right menu">
+
+        <a className="item">
+          Приветствую <br></br> {cookies.get('name')}</a>
+        <a className="item"
+          onClick={this.props.destroyCookies}>LogOut</a>
 
         </div>
 
-        {/* <a className="item">{this.props.name}</a>
-          <a className="item"
-            onClick={this.props.destroyCookies}>LogOut</a>
-
-          <Link className="item" to='/profile/0'>Profile</Link>
-          <Link className="item" to='/main'>Main</Link>
-          <Link className="item" to='/all'>All tours</Link> */}
-
-
-        <Switch>
-          <Route exact path='/profile/:id' component={Profile} />
-          <Route exact path='/main' component={Main} />
-          <Route exact path='/all' component={All} />
-          <Route exact path='/photos' component={Photos} />
-          <Route exact path='/all/:id' render={(props) => <OneTour {...props} />} />
-          <Route exact path='/oneprofile' render={(props) => <ProfileOneTour {...props} />} />
-        </Switch>
       </div>
-
-
+      <Switch>
+        <Route exact path='/profile/:id' component={Profile} />
+        <Route exact path='/chat' component={ChatPage} />
+        <Route exact path='/main' component={Main} />
+        <Route exact path='/all' component={All} />
+        <Route exact path='/photos' component={Photos} />
+        <Route exact path='/all/:id' render={(props) => <OneTour {...props} />} />
+        <Route exact path='/oneprofile' render={(props) => <ProfileOneTour {...props} />} />
+      </Switch>
+    </div>
 
     );
-    // } else return <div>oi ei ei</div>
+
   }
 }
 
 
 export default Menu;
 
-// const mapStateToProps = (state) => {
-//   return {isSignedIn: state.isSignedIn}
-// };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onSignedOutClick: () => dispatch(signOut())
 
-//   }
-// };
+{/* <div className="ui stackable menu">
+    
+    <a className="item">{cookies.get('name')}</a>
+    
+        <a className="item"
+        onClick={this.props.destroyCookies}>LogOut</a>
 
-// export default connect(
-//   mapStateToProps, mapDispatchToProps
-// )(Menu);
+        <Link className="item" to='/profile/0'>Profile</Link>
+        <Link className="item" to='/main'>Main</Link>
+        <Link className="item" to='/all'>All tours</Link>
+        
+        </div>
+        <div class="ui segment">
+        <div className="ui small circular right floated image">
+        <img src={pic1} />
+        </div>
+      </div> */}
 
+      // <div className='ui container'>

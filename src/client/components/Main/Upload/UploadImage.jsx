@@ -1,6 +1,6 @@
 import React from 'react';
 import axios, { post } from 'axios'
-import './UploadImage'
+import './UploadImage.css'
 
 export default class UploadImage extends React.Component {
     constructor(props) {

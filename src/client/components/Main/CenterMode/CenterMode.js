@@ -20,6 +20,7 @@ export default class CenterMode extends Component {
 
     return (
       <div className='slider' >
+        <h1>Добавляйте свои фотографии</h1>
         <Slider {...settings}>
           {
             images.keys().map(element => {

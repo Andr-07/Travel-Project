@@ -17,10 +17,6 @@ import { Redirect } from 'react-router-dom';
 
 const cookies = new Cookies();
 
-const userStateforCookie = cookies.get('name');
-  
-
-
 class App extends React.Component {
   state = {
     isSignedInGoogle: null,
@@ -29,7 +25,6 @@ class App extends React.Component {
     redirect: null,
     googlerprofile:null
   }
-
 
   googleListen = async () => {
     
@@ -41,7 +36,7 @@ class App extends React.Component {
     }
     await this.setState({ isSignedInGoogle: this.auth.isSignedIn.get() });
  
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   async componentDidMount() {
@@ -61,6 +56,7 @@ class App extends React.Component {
     await this.setState({ redirect: 'main' })
     await this.setState({ googlerprofile: this.auth.currentUser.Ab.w3 })
     cookies.set('name', this.auth.currentUser.Ab.w3.ig, { path: '/' });
+    cookies.set('avatar', this.auth.currentUser.Ab.w3.Paa, { path: '/' });
     await this.setState({name:cookies.get('name')})
     // console.log(this.auth.currentUser.Ab.w3.i)
 
@@ -71,6 +67,7 @@ class App extends React.Component {
     await this.auth.signOut();
     await this.setState({ redirect: 'login' })
     cookies.remove('name');
+    cookies.remove('avatar');
     await this.setState({name:undefined})
     console.log("----------------", this.state)
 

@@ -3,6 +3,7 @@ import React from 'react';
 
 import Cookies from 'universal-cookie';
 import { YMaps, Map, RouteButton, Placemark, Button, Polyline } from 'react-yandex-maps';
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 
 
 const cookies = new Cookies();
@@ -16,6 +17,39 @@ class ProfileOneTour extends React.Component {
     center: [],
     numberOfMap: '',
     resJson: null,
+    redirect: false
+
+  }
+
+  deleteTour = async (id) => {
+    console.log(id)
+    let response = await fetch('/api/deleteMap',
+    {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: id,
+          userName: cookies.get('name'),
+        })
+      })
+      let jsonRes = await response.json()
+      this.setState({resJson: jsonRes});
+
+      this.props.createLinks(this.state.resJson.length)
+
+      alert('Вы успешно удалили маршрут')
+      this.setState({
+        redirect: true
+      })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/profile/0' />
+    }
   }
 
   async componentDidMount() {
@@ -37,12 +71,7 @@ class ProfileOneTour extends React.Component {
       console.log('lengthlengthlength', jsonRes.length)
       console.log('numbernumber', this.props.number)
       this.setState({resJson: jsonRes});
-      // this.setState({
-        //   allMarks: jsonRes[this.props.number].allMarks,
-        //   allLines: jsonRes[this.props.number].allLines,
-        //   title: jsonRes.tourName,
-        //   center: jsonRes[this.props.number].allMarks[1].coors
-    // })
+
         this.props.createLinks(this.state.resJson.length)
   }
 
@@ -52,11 +81,18 @@ class ProfileOneTour extends React.Component {
     }
 
     const tour = this.state.resJson[this.props.number]
+    // console.log('ididididididd', tour._id)
 
     return (
+      <div>
+                {this.renderRedirect()}
+
+      {tour ? (
+<div>
       <YMaps>
         <div>
           <h1>{tour.tourName}:</h1>
+          <hr></hr>
         </div>
         <Map
         style={{ height: "350px", width: "100%" }}
@@ -81,14 +117,23 @@ class ProfileOneTour extends React.Component {
             geometry={tour.allLines}
             options={{
               balloonCloseButton: false,
-              strokeColor: '#DC143C',
-              strokeWidth: 3,
+              strokeColor: '#0000FF',
+              strokeWidth: 4,
               strokeOpacity: 0.5,
+              strokeStyle: 'dot'
+              // strokeColor: '#DC143C',
+              // strokeWidth: 3,
+              // strokeOpacity: 0.5,
             }}
           />
 
         </Map>
       </YMaps>
+      <h4>Описание: {tour.description}</h4>
+      <hr></hr>
+      <button class="negative ui button" onClick={()=>this.deleteTour(tour._id)}>Удалить</button> 
+      </div>) : (<h2>Пока маршрутов нет, но вы можете создать их <Link to={`/main`}>здесь</Link></h2>)}
+      </div>
     )
   }
 

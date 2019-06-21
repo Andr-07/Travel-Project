@@ -42,20 +42,20 @@ class Form extends React.Component {
                 <div className="field"
 
                 >
-                    <label>CREATE YOUR MAP</label>
+                    <label>СОЗДАЙ СВОЙ МАРШРУТ</label>
                     <div className="two fields">
                         <div className="field">
                             <input type="text" placeholder="YOUR NAME" name='userName' value={cookies.get('name')} />
                         </div>
                         <div className="field">
-                            <input type="text" placeholder="MAP NAME" name='mapName' value={this.state.mapName} />
+                            <input type="text" placeholder="Название маршрута" name='mapName' value={this.state.mapName} />
                         </div>
                     </div>
                 </div>
                 <div className="field"  >
 
-                    <label>Description</label>
-                    <input type="text" placeholder="TELL YOUR STORY" name='description' value={this.state.description} />
+                    <label>ОПИСАНИЕ</label>
+                    <input type="text" placeholder="Расскажи свою историю" name='description' value={this.state.description} />
                 </div>
 
                 <button className="ui red button" type="submit">Submit</button>

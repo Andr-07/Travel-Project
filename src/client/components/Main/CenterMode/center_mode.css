@@ -1,7 +1,7 @@
 .slider {
   margin: auto;
     height: 230px;
-    width: 90%;
+    width: 100%;
     color: #333;
   }
   
@@ -108,14 +108,14 @@
   }
   .slick-next {
     z-index: 100;
-    right: 10px !important;
+    right: 220px !important;
   }
   
   .ui .input {
     margin-bottom: 30px;
   }
-  /* .ui .button .active{
+  .ui .button .active{
     padding: 0
-  } */
+  }
 
   /* `https://img.icons8.com/color/48/000000/${el.i}-circle.png` */
