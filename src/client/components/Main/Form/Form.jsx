@@ -55,7 +55,7 @@ class Form extends React.Component {
                 <div className="field"  >
 
                     <label>ОПИСАНИЕ</label>
-                    <input type="text" placeholder="Расскажи свою историю" name='description' value={this.state.description} />
+                    <textarea type="text" placeholder="Расскажи свою историю" name='description' value={this.state.description} />
                 </div>
 
                 <button className="ui red button" type="submit"
