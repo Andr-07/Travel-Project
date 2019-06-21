@@ -131,7 +131,7 @@ class ProfileOneTour extends React.Component {
       </YMaps>
       <h4>Описание: {tour.description}</h4>
       <hr></hr>
-      <button class="negative ui button" onClick={()=>this.deleteTour(tour._id)}>Delete</button> 
+      <button class="negative ui button" onClick={()=>this.deleteTour(tour._id)}>Удалить</button> 
       </div>) : (<h2>Пока маршрутов нет, но вы можете создать их <Link to={`/main`}>здесь</Link></h2>)}
       </div>
     )

@@ -6,7 +6,8 @@ const tourSchema = new mongoose.Schema({
     tourName: String,
     description: String,
     allMarks: [Object],
-    allLines: [Array]
+    allLines: [Array],
+    date: String
 });
 
 

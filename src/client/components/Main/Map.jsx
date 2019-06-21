@@ -9,6 +9,8 @@ import ReactDOMServer from "react-dom/server";
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
+let moment = require("moment");
+
 
 let count = 0;
 let input = 'start';
@@ -35,6 +37,7 @@ export class TestMap extends React.Component {
             lines: [],
             back: false,
             input: '',
+            date: ''
 
         }
         this.handleClick = this.handleClick.bind(this)
@@ -139,7 +142,8 @@ export class TestMap extends React.Component {
                     allLines: this.state.lines,
                     userName: cookies.get('name'),
                     mapName: this.state.mapName,
-                    description: this.state.description
+                    description: this.state.description,
+                    date: moment().format("MMMM Do YYYY")
 
                 })
             })
@@ -179,26 +183,27 @@ export class TestMap extends React.Component {
 
   
                         <Button
-                            data={{ content: 'Mark' }}
+                            data={{ content: 'Метка'
+                        }}
                             options={{ maxWidth: 128 }}
                             defaultState={{ selected: false }}
                             onClick={this.markButton}
                         />
                         <Button
-                            data={{ content: 'Line' }}
+                            data={{ content: 'Линия' }}
                             options={{ maxWidth: 128 }}
                             defaultState={{ selected: false }}
                             onClick={this.polylineButton}
                         />
                           <Button
-                            data={{ content: 'Back mark' }}
+                            data={{ content: '<i class="arrow left icon"></i> Метка' }}
                             options={{ maxWidth: 128 }}
                             defaultState={{ selected: false }}
                             onClick={this.backButtonMark}
                         />
 
                         <Button
-                            data={{ content: 'Back line' }}
+                            data={{ content: '<i class="arrow left icon"></i> Линия' }}
                             options={{ maxWidth: 128 }}
                             defaultState={{ selected: false }}
                             onClick={this.backButtonLine}
@@ -248,7 +253,6 @@ export class TestMap extends React.Component {
                         />)}
                     </Map>
                     <Form handleInputChange={this.handleInputChange} />
-                    {/* <button onClick={this.saveData}>Save it</button> */}
                     
 
                 </form>

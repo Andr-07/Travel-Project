@@ -24,10 +24,10 @@ class Menu extends React.Component {
       <div class="ui pointing menu">
 
 
-        <Link className="item" to='/profile/0'>Profile</Link>
-        <Link className="item" to='/main'>Main</Link>
-        <Link className="item" to='/all'>All tours</Link>
-        <Link className="item" to='/chat'>Forum</Link>
+        <Link className="item" to='/profile/0'>Личный кабинет</Link>
+        <Link className="item" to='/main'>Главная</Link>
+        <Link className="item" to='/all'>Все маршруты</Link>
+        <Link className="item" to='/chat'>Форум</Link>
 
         <div class="right menu">
 

@@ -17,6 +17,7 @@ class ChatPage extends React.Component {
     }
 
     sendMessage = async () => {
+        this.setState({message:''})
         let response = await fetch('/api/sendMessage',
             {
                 method: 'POST',
@@ -29,7 +30,6 @@ class ChatPage extends React.Component {
                     message: this.state.message
                 })
             })
-            this.setState({message:''})
         // console.log(response)
         let whatIGet = await response.json()
         // console.log(whatIGet)
@@ -60,6 +60,8 @@ console.log(whatIGet)
         return (
             <div className="ui grid">
                 <div class="sixteen wide column">
+            <h1><i class="star outline icon"></i>
+Общий форум</h1>
                     <div class="ui center aligned segment">
                         {this.state.arrMessages.map(el => {
                            
@@ -88,12 +90,12 @@ console.log(whatIGet)
                                 
                             </div>
 
-                            <textarea type="text" placeholder="Type message"
+                            <textarea type="text" placeholder="Написать.."
                                 onChange={(event) => this.setState({ message: event.target.value })} />
                         </div>
                         <br></br>
                         <br></br>
-                        <button class="ui yellow basic button" onClick={this.sendMessage}>Send</button>
+                        <button class="ui yellow basic button" onClick={this.sendMessage}><i class="icon envelope" />Отправить</button>
                     </div>
                 </div>
             </div>

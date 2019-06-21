@@ -20,7 +20,9 @@ router.post('/oneTour', async (req, res, next) => {
     tourName: req.body.mapName,
     description: req.body.description,
     allMarks: req.body.allMarks,
-    allLines: req.body.allLines
+    allLines: req.body.allLines,
+    date: req.body.date
+
   })
 
   await saveData.save();
@@ -57,7 +59,7 @@ router.delete('/deleteMap', async (req, res, next) => {
     userName: req.body.userName,
     date: req.body.date,
     comment: req.body.comment,
-    idPost: req.body.idPost
+    idPost: req.body.idPost,
   })
 
   await saveComment.save();
