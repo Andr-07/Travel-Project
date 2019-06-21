@@ -9,6 +9,8 @@ import ReactDOMServer from "react-dom/server";
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
+let moment = require("moment");
+
 
 let count = 0;
 let input = 'start';
@@ -35,6 +37,7 @@ export class TestMap extends React.Component {
             lines: [],
             back: false,
             input: '',
+            date: ''
 
         }
         this.handleClick = this.handleClick.bind(this)
@@ -139,7 +142,8 @@ export class TestMap extends React.Component {
                     allLines: this.state.lines,
                     userName: cookies.get('name'),
                     mapName: this.state.mapName,
-                    description: this.state.description
+                    description: this.state.description,
+                    date: moment().format("MMMM Do YYYY")
 
                 })
             })

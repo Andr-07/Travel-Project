@@ -95,7 +95,7 @@ console.log(whatIGet)
                         </div>
                         <br></br>
                         <br></br>
-                        <button class="ui yellow basic button" onClick={this.sendMessage}><i class="icon envelope" />Send</button>
+                        <button class="ui yellow basic button" onClick={this.sendMessage}><i class="icon envelope" />Отправить</button>
                     </div>
                 </div>
             </div>

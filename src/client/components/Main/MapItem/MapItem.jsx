@@ -2,6 +2,9 @@ import React from 'react';
 import picmap from '../../../public/daniel.jpg';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 
+let moment = require("moment");
+
+
 class MapItem extends React.Component {
 
     state = {
@@ -38,8 +41,7 @@ class MapItem extends React.Component {
                     <Link to={`/all/${el._id}`}>{el.tourName}</Link>
 
                     </div>
-                        <i className="heart outline icon red "></i>
-                            10 Likes
+                            {el.date}
                             <hr></hr>
                 </div>
                 </div>)}
