@@ -23,3 +23,6 @@
   <li><a href="https://github.com/Andr-07">Андрей Лубочников</li>
   <li><a href="https://github.com/followname">Константин Мерешко</li>
 </ul>
+
+<b><h3>Technologies:</h3><hr></hr></b>
+Node, React, Express, MongoDB, Mongoose, Webpack, Babel, Semantic ui, API (Google, Yandex maps) 
