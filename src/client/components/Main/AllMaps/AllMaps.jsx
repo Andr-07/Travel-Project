@@ -41,9 +41,9 @@ class AllMaps extends React.Component {
               <div className="header">
               {el.tourName}</div>
               <div class="meta">
-                <span className="category">
+                {/* <span className="category">
                 {el.description}
-                </span>
+                </span> */}
               </div>
               <div className="description">
                 <Link to={`/all/${el._id}`}>Подробнее</Link>
