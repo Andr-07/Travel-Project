@@ -3,6 +3,7 @@ import Cookies from 'universal-cookie';
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
+import Photos from './Photos/Photos'
 import Main from '../Main/Main';
 import pic1 from '../../public/trsvelforest.jpg';
 // import pic2 from '../public/mapBiege.jpg';
@@ -28,6 +29,7 @@ class Menu extends React.Component {
         <Link className="item" to='/main'>Главная</Link>
         <Link className="item" to='/all'>Все маршруты</Link>
         <Link className="item" to='/chat'>Форум</Link>
+        <Link className="item" to='/photos'>Фотографии</Link>
 
         <div class="right menu">
 
@@ -44,6 +46,7 @@ class Menu extends React.Component {
         <Route exact path='/chat' component={ChatPage} />
         <Route exact path='/main' component={Main} />
         <Route exact path='/all' component={All} />
+        <Route exact path='/photos' component={Photos} />
         <Route exact path='/all/:id' render={(props) => <OneTour {...props} />} />
         <Route exact path='/oneprofile' render={(props) => <ProfileOneTour {...props} />} />
       </Switch>

@@ -1,6 +1,4 @@
 import React from 'react';
-
-
 import ProfileOneTour from '../ProfileOneTour/ProfileOneTour';
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
@@ -99,7 +97,5 @@ class Profile extends React.Component {
     )
   }
 }
-
-
 
 export default Profile;

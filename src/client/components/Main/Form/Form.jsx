@@ -40,7 +40,7 @@ class Form extends React.Component {
 
                 <br></br>
                 <div className="field"
-               
+
                 >
                     <label>СОЗДАЙ СВОЙ МАРШРУТ</label>
                     <div className="two fields">
@@ -58,9 +58,7 @@ class Form extends React.Component {
                     <textarea type="text" placeholder="Расскажи свою историю" name='description' value={this.state.description} />
                 </div>
 
-                <button className="ui red button" type="submit"
-
-                >Поделиться</button>
+                <button className="ui red button" type="submit">Submit</button>
 
             </form>
         );

@@ -9,14 +9,12 @@ import router from './router';
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const redis   = require("redis");
+const redis = require("redis");
 const RedisStore = require('connect-redis')(session);
-const client  = redis.createClient();
+const client = redis.createClient();
 
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/hiking', {useNewUrlParser: true});
-
-
+mongoose.connect('mongodb://localhost:27017/hiking', { useNewUrlParser: true });
 
 const app = express();
 
@@ -29,11 +27,11 @@ app.use(express.json());
 const { buildConfig: { assetsDir, targetDir }, server: { port }, proxyAssets } = config;
 
 app.use(session({
-  store: new RedisStore({ 
+  store: new RedisStore({
     client,
-    host: 'localhost', 
-    port: 6379, 
-    ttl :  260
+    host: 'localhost',
+    port: 6379,
+    ttl: 260
   }),
   key: 'user_sid',
   secret: 'anything here',

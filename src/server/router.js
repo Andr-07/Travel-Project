@@ -10,7 +10,30 @@ const router = express.Router();
 router.get('/test', (req, res) => {
   res.send({ test: 'test' });
 });
+const path = require("path");
+const multer = require("multer");
 
+const storage = multer.diskStorage({
+  destination: "./public/uploads/",
+  filename: function (req, file, cb) {
+    cb(null, "newName-" + Date.now() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1000000 },
+}).single("myImage");
+
+router.post("/upload", (req, res) => {
+  upload(req, res, err => {
+    console.log("Request ---", req.body);
+    console.log("Request file ---", req.file);//Here you get file.
+    /*Now do where ever you want to do*/
+    if (!err)
+    return res.send(200).end();
+  });
+});
 
 router.post('/oneTour', async (req, res, next) => {
 
@@ -105,7 +128,6 @@ router.post('/reg', async (req, res, next) => {
     password: req.body.password,
     email: req.body.email
   })
-
 
   await user.save();
   // console.log(">>>>>>>>>>>>", user)
