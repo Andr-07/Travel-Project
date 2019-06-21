@@ -1,5 +1,4 @@
 import React from 'react';
-import CenterMode from './CenterMode/CenterMode'
 
 import Form from './Form/Form.jsx'
 
@@ -18,7 +17,7 @@ export class TestMap extends React.Component {
         super();
 
         this.state = {
-            userName:'',
+            userName: '',
             mapName: '',
             description: '',
             markX: '',
@@ -27,7 +26,7 @@ export class TestMap extends React.Component {
                 {
                     coors: [],
                     i: 1,
-                    balloonInput:input
+                    balloonInput: input
                 }
             ],
             isMark: false,
@@ -70,6 +69,7 @@ export class TestMap extends React.Component {
     /* Кнопка для рисования маркера и линии  */
 
     handleClick = (event) => {
+        console.log("handleClick handleClick handleClick handleClick handleClick handleClick handleClick handleClick handleClick ")
         let coords1 = event.get('coords')
         if (this.state.isLine === true) {
             this.setState({
@@ -119,9 +119,7 @@ export class TestMap extends React.Component {
         console.log(this.state.placemarks)
     }
 
-
-
-        /* Cохранение одной карты  */
+    /* Cохранение одной карты  */
 
     saveData = async () => {
         let response = await fetch('/api/oneTour',
@@ -141,29 +139,49 @@ export class TestMap extends React.Component {
             })
     }
 
+    onDraggerStart = (event) => { 
+        console.log('>>>>>',event.get('position'))  
+        // var offset = markerElement.offset(),
+        //     position = event.get('position');
+        // // Сохраняем смещение маркера относительно точки начала драга.	
+        // markerOffset = [
+        //     position[0] - offset.left,
+        //     position[1] - offset.top
+        // ];
+        // markerPosition = [
+        //     position[0] - markerOffset[0],
+        //     position[1] - markerOffset[1]
+        // ];
+
+        // applyMarkerPosition();
+    }
+
     render() {
         return (
-                <YMaps>
-                    <form onSubmit={(e) => {
-                        e.preventDefault();
-                        console.dir(e.target.elements[0].value)
-                        console.log('target', e.target.elements[1].id)
-                        let targetId = e.target.elements[1].id;
-                        input = e.target.elements[0].value;
-                        let newArr = [...this.state.placemarks]
-                        newArr[targetId].balloonInput = e.target.elements[0].value
-                        console.log('>>>', newArr[targetId].balloonInput)
-                        this.setState({
-                            placemarks: newArr
-                        })
-                        
+            <YMaps>
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    console.dir(e.target.elements[0].value)
+                    console.log('target', e.target.elements[1].id)
+                    let targetId = e.target.elements[1].id;
+                    input = e.target.elements[0].value;
+                    let newArr = [...this.state.placemarks]
+                    newArr[targetId].balloonInput = e.target.elements[0].value
+                    console.log('>>>', newArr[targetId].balloonInput)
+                    this.setState({
+                        placemarks: newArr
+                    })
+
                     // })
 
                 }}
                 >
-                    <Map style={{ height: "400px", width: "100%", border: "outset 3px #0000FF"}} defaultState={{ center: [55.75, 37.57], zoom: 9 }} onClick={this.handleClick}>
+                    <Map
+                        style={{ height: "400px", width: "100%", border: "outset 3px #0000FF" }}
+                        defaultState={{ center: [55.75, 37.57], zoom: 9 }}
+                        onClick={this.handleClick}>
 
-  
+
                         <Button
                             data={{ content: 'Mark' }}
                             options={{ maxWidth: 128 }}
@@ -176,7 +194,7 @@ export class TestMap extends React.Component {
                             defaultState={{ selected: false }}
                             onClick={this.polylineButton}
                         />
-                          <Button
+                        <Button
                             data={{ content: 'Back mark' }}
                             options={{ maxWidth: 128 }}
                             defaultState={{ selected: false }}
@@ -189,7 +207,7 @@ export class TestMap extends React.Component {
                             defaultState={{ selected: false }}
                             onClick={this.backButtonLine}
                         />
-                      
+
                         <Polyline
                             geometry={[...this.state.lines]}
                             options={{
@@ -200,7 +218,8 @@ export class TestMap extends React.Component {
                                 strokeStyle: 'dot'
                             }}
                         />
-                        <Placemark geometry={[55.684758, 37.738521]}
+                        <Placemark
+                            geometry={[55.684758, 37.738521]}
                             options={{
                                 iconLayout: 'default#image',
                                 iconImageHref: "https://img.icons8.com/cotton/64/000000/forest.png",
@@ -218,15 +237,16 @@ export class TestMap extends React.Component {
 
                         />
 
-                        {this.state.placemarks.map(el => <Placemark geometry={el.coors}
+                        {this.state.placemarks.map(el => <Placemark
+                            geometry={el.coors}
                             options={{
                                 iconLayout: 'default#image',
                                 iconImageHref: `https://img.icons8.com/color/48/000000/${el.i}-circle.png`,
                                 draggable: true
-                                
+
                             }}
                             properties={{
-                                balloonContentHeader: `Пункт№ ${el.i} - ${el.balloonInput}`, 
+                                balloonContentHeader: `Пункт№ ${el.i} - ${el.balloonInput}`,
                                 balloonContentBody: `<input data-baloon-input placeholder="Описаниe" value=${el.balloonInput}></input>`,
                                 balloonContentFooter: `<button data-baloon-button data-balloon-id='${el.i}' id='${el.i}'>Сохранить</button>`
 
@@ -235,7 +255,7 @@ export class TestMap extends React.Component {
                     </Map>
                     <Form handleInputChange={this.handleInputChange} />
                     {/* <button onClick={this.saveData}>Save it</button> */}
-                    
+
 
                 </form>
 
