@@ -36,22 +36,22 @@ class AllMaps extends React.Component {
             {this.state.arr.map(el =>
               <div class="five wide column">
 
-                <div className="ui raised link card">
-                  <div className="content">
-                    <div className="header">
-                      {el.tourName}</div>
-                    <div class="meta">
-                      <span className="category">
-                        {el.description}
-                      </span>
-                    </div>
-                    <div className="description">
-                      <Link to={`/all/${el._id}`}>Подробнее</Link>
-                    </div>
-                  </div>
-                  <div className="extra content">
-                    <div className="right floated author">
-                      <img className="ui avatar image" src={"https://mir-avatarok.3dn.ru/_si/0/03342719.jpg"} /> Author: {el.userName}
+          <div className="ui raised link card">
+            <div className="content">
+              <div className="header">
+              {el.tourName}</div>
+              <div class="meta">
+                {/* <span className="category">
+                {el.description}
+                </span> */}
+              </div>
+              <div className="description">
+                <Link to={`/all/${el._id}`}>Подробнее</Link>
+              </div>
+            </div>
+            <div className="extra content">
+              <div className="right floated author">
+                <img className="ui avatar image" src={"https://mir-avatarok.3dn.ru/_si/0/03342719.jpg"}/> Author: {el.userName}
 
 
                     </div>
