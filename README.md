@@ -5,8 +5,8 @@
 
 <b><h3>Get started:</h3><hr></hr></b>
 <code>
-  <p>npm install</p>
-  <p>npm start</p>
+  npm install <br>
+  npm start
 </code>
 
 <b><h3>MVP Functionality:</h3><hr></hr></b>
@@ -26,3 +26,4 @@
 
 <b><h3>Technologies:</h3><hr></hr></b>
 Node, React, Express, MongoDB, Mongoose, Webpack, Babel, Semantic ui, API (Google, Yandex maps) 
+li
