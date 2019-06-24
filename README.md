@@ -26,4 +26,4 @@
 
 <b><h3>Technologies:</h3><hr></hr></b>
 Node, React, Express, MongoDB, Mongoose, Webpack, Babel, Semantic ui, API (Google, Yandex maps) 
-li
+
