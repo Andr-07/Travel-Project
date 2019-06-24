@@ -4,10 +4,10 @@
 <img src="https://pp.userapi.com/c855424/v855424368/6fb2a/LnR7KOSZQvA.jpg"></img> 
 
 <b><h3>Get started:</h3><hr></hr></b>
-<ul>
-  <li>npm install</li>
-  <li>npm start</li>
-</ul>
+<code>
+  <p>npm install</p>
+  <p>npm start</p>
+</code>
 
 <b><h3>MVP Functionality:</h3><hr></hr></b>
 <ul>
