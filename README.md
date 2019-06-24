@@ -5,7 +5,7 @@
 
 <b><h3>Get started:</h3><hr></hr></b>
 <code>
-  npm install<br>
+  npm install</br>
   npm start
 </code>
 
